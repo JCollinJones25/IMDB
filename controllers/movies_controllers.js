@@ -36,3 +36,18 @@ router.get('/:id/', async (req, res, next) => {
         return next();
     }
 })
+
+// edit route
+router.get('/:id/edit', async (req, res, next) => {
+    try {
+        const updatedMovie = await db.Movie.findById(req.params.id)
+        const context = {
+            movie: updatedMovie
+        }
+        return res.render('edit.ejs', context)
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
