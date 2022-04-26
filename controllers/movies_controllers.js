@@ -6,9 +6,9 @@ const db = require('../models')
 router.get('/', async (req, res, next) => {
     try {
         const movies = await db.Movie.find({})
-        const context = {movies}
-        console.log(movies)
-        return res.render('movies/index.ejs', context)
+        // const context = {movies}
+        // console.log(movies)
+        // return res.render('movies/index.ejs', context)
     } catch (error) {
         console.log(error);
         req.error = error;

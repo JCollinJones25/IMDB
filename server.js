@@ -30,7 +30,7 @@ app.use('/Movies', controllers.movies)
 
 //routes home route to movies route 
 app.get('/', (req,res) => {
-    res.redirect('/movie')
+    res.redirect('/movies')
 })
 
 
