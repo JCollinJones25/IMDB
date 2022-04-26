@@ -1,4 +1,4 @@
 module.exports = {
-    movies: require('./movies_controller'),
-    actors: require('./actors_controller')
+    movies: require('./movies_controllers'),
+    actors: require('./actors_controllers')
 }
