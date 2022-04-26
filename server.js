@@ -26,7 +26,7 @@ app.use(methodOverride('_method'))
 
 //controllers 
 app.use('/Actors', controllers.actors)
-app.use('/Movie', controllers.movies)
+app.use('/Movies', controllers.movies)
 
 //routes home route to movies route 
 app.get('/', (req,res) => {
