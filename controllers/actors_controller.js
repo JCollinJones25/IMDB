@@ -53,4 +53,27 @@ router.get('/:actorId', async (req, res, next) => {
     }
 })
 
+// update route
+router.put('/:actorId', async (req, res, next) => {
+    res.send('Hitting Actor Update: ' + req.params.actorId)
+})
+
+// edit route
+router.get('/:actorId/edit', async (req, res, next) => {
+    res.send ("Hitting Actor Edit: " + req.params.actorId)
+})
+
+// delete route
+router.delete('/actorId', async (req, res, next) => {
+    try {
+        const deleteActor = await db.Actor.findByIdAndDelete(req.params.actorId)
+        console.log(deleteActor.id, "<<< Actor | ", deleteActor.movie, "<<< Movie")
+        res.redirect(`/movies/${deleteActor.movie}`)
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
 module.exports = router
