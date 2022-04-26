@@ -25,8 +25,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 
 //controllers 
-app.use('/Actors', controllers.actors)
-app.use('/Movies', controllers.movies)
+app.use('/actors', controllers.actors)
+app.use('/movies', controllers.movies)
 
 //routes home route to movies route 
 app.get('/', (req,res) => {
