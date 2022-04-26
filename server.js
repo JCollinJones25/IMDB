@@ -1,9 +1,11 @@
 //connects to database
-require('./config/db.connection')
+require('./config/db.connections')
+
+const PORT = 4022
 
 //dependecies
 const express = require('express')
-const methodOverride = require('method')
+const methodOverride = require('method-override')
 const controllers = require('./controllers')
 
 //express instances 
@@ -23,12 +25,12 @@ app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 
 //controllers 
-app.use('/actors', controllers.actors)
-app.use('/movies', controllers.movies)
+app.use('/Actors', controllers.actors)
+app.use('/Movie', controllers.movies)
 
 //routes home route to movies route 
 app.get('/', (req,res) => {
-    res.redirect('/movies')
+    res.redirect('/index')
 })
 
 
