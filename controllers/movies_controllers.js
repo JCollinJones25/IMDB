@@ -6,9 +6,9 @@ const db = require('../models')
 router.get('/', async (req, res, next) => {
     try {
         const movies = await db.Movie.find({})
-        // const context = {movies}
-        // console.log(movies)
-        // return res.render('movies/index.ejs', context)
+        const context = {movies}
+        console.log(movies)
+        return res.render('movies/index.ejs', context)
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -25,11 +25,11 @@ router.get('/new', (req, res) => {
 router.get('/:id/', async (req, res, next) => {
     try {
         const foundMovie = await db.Movie.findById(req.params.id)
-        const allActors = await db.Actor.find({movie: req.params.id})
-        console.log(allActors.length, "Actors Found")
+        // const allActors = await db.Actor.find({movie: req.params.id})
+        // console.log(allActors.length, "Actors Found")
         const context = {
             oneMovie: foundMovie,
-            actors: allActors
+            // actors: allActors
         }
         return res.render('movies/show.ejs', context)
     } catch (error) {
