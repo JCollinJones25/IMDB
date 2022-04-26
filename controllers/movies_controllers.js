@@ -8,7 +8,7 @@ router.get('/', async (req, res, next) => {
         const movies = await db.Movie.find({})
         const context = {movies}
         console.log(movies)
-        return res.render('index.ejs', context)
+        return res.render('movies/index.ejs', context)
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -31,7 +31,7 @@ router.get('/:id/', async (req, res, next) => {
             oneMovie: foundMovie,
             actors: allActors
         }
-        return res.render('show.ejs', context)
+        return res.render('movies/show.ejs', context)
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -47,7 +47,7 @@ router.get('/:id/edit', async (req, res, next) => {
         const context = {
             movie: updatedMovie
         }
-        return res.render('edit.ejs', context)
+        return res.render('movies/edit.ejs', context)
     } catch (error) {
         console.log(error);
         req.error = error;
