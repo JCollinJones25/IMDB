@@ -1,4 +1,4 @@
 module.exports = {
-    products: require('./products_controller'),
-    reviews: require('./reviews_controller')
+    movies: require('./movies_controller'),
+    actors: require('./actors_controller')
 }
