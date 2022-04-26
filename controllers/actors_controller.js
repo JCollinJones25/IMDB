@@ -27,7 +27,30 @@ router.get('/new', async (req, res, next) => {
     }
 })
 
+// create route
+router.post('/', async (req, res, next) => {
+    try {
+        const newActorData = req.body
+        const newActor = await db.Actor.create(newActorData)
+        console.log(newActor)
+        res.redirect(`/movies/${newActor.movie}`)
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
 
-
+// show route
+router.get('/:actorId', async (req, res, next) => {
+    try {
+        const foundActor = await db.Actor.findById(req.params.actorId).populate('movie')
+        res.render('actors/show.ejs', { actor: foundActor })
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
 
 module.exports = router
