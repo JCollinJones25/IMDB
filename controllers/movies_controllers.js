@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 
 // new route
 router.get('/new', (req, res) => {
-    res.render('new.ejs')
+    res.render('movies/new.ejs')
 })
 
 // show route
