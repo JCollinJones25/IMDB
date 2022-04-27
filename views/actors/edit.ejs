@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs', { pageName: "Edit Actor" }) %>
+  <body>
+    <%- include('../partials/nav.ejs')%>
+    <h1>Edit <%= actor.name%></h1>
+    <div>
+      <form method="POST" action="/movies/<%= actor._id %>?_method=PUT">
+        <div>
+          <label>Name: </label>
+          <input type="text" name="name" value="<%=actor.name %>" />
+        </div>
+        <div>
+          <label>Actor Image (URL): </label>
+          <input type="text" name="image" value="<%= actor.image %>" />
+        </div>
+        <div>
+          <label>Age: </label>
+          <input type="number" name="age" value="<%= actor.age %>" />
+        </div>
+        <div>
+          <label>Hometown: </label>
+          <input type="text" name="hometown" value="<%= actor.hometown %>" />
+        </div>
+        <div>
+          <label>Movie: </label>
+          <input type="text" name="movie" value="<%= actor.movie %>" />
+        </div>
+        <div>
+          <label>Filmography: </label>
+          <input type="text" name="filmography" value="<%= actor.otherMovies %>"/>
+        </div>
+        <div>
+          <input type="submit" value="Edit Actor: <%= actor.name %>" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

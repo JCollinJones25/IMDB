@@ -8,34 +8,34 @@
         <form method="POST" action="/movies/<%= movie._id %>?_method=PUT">
         <div>
             <label>Name: </label>
-            <input type="text" name="name" value="<%=movie.name%>"/>
+            <input type="text" name="name" value="<%=movie.name %>"/>
         </div>
         <div>
             <label>Year: </label>
-            <input type="text" name="year" value="<%= movie.year%>"/>
+            <input type="text" name="year" value="<%= movie.year %>"/>
         </div>
         <div>
             <label>Director: </label>
-            <input type="text" name="director" value="<%= movie.director%>"/>
+            <input type="text" name="director" value="<%= movie.director %>"/>
         </div>
         <div>
             <label>Genre: </label>
-            <input type="text" name="genre" value="<%= movie.genre%>"/>
-        </div>
-        <div>
-            <label>Movie Poster: </label>
-            <input type="text" name="image" value="<%= movie.image%>"/>
+            <input type="text" name="genre" value="<%= movie.genre %>"/>
         </div>
         <div>
             <label>Rating: </label>
-            <input type="number" name="rating" value="<%= movie.rating%>"/>
+            <input type="number" name="rating" value="<%= movie.rating %>"/>
+        </div>
+        <div>
+            <label>Movie Poster (URL): </label>
+            <input type="text" name="image" value="<%= movie.image %>"/>
         </div>
         <div>
             <label>Actors: </label>
-            <input type="text" name="actors" value="<%= movie.actors%>"/>
+            <input type="text" name="actors" value="<%= movie.actors %>"/>
         </div>
         <div>
-            <input type="submit" value="Edit Movie: <%= movie.name%>"/>
+            <input type="submit" value="Edit Movie: <%= movie.name %>"/>
         </div>
         </form>
     </div>
