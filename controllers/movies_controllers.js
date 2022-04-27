@@ -5,7 +5,7 @@ const db = require('../models')
 // index route
 router.get('/', async (req, res, next) => {
     try {
-        const movies = await db.Movie.find({})
+        const movies = await db.Movie.find({}).populate('actors')
         const context = {movies}
         console.log(movies)
         return res.render('movies/index.ejs', context)
@@ -24,9 +24,10 @@ router.get('/new', (req, res) => {
 // show route
 router.get('/:id/', async (req, res, next) => {
     try {
-        const foundMovie = await db.Movie.findById(req.params.id)
-        // const allActors = await db.Actor.find({movie: req.params.id})
+        const foundMovie = await db.Movie.findById(req.params.id).populate('actors')
+        // const allActors = await db.Actor.find()
         // console.log(allActors.length, "Actors Found")
+        console.log(foundMovie)
         const context = {
             oneMovie: foundMovie,
             // actors: allActors

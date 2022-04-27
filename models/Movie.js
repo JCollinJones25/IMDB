@@ -24,7 +24,8 @@ const movieSchema = new mongoose.Schema({
         max: 10
     },
     actors: [{
-        type: String
+        type: mongoose.Types.ObjectId,
+        ref: "Actor"
     }]
 });
 

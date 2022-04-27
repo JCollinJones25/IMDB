@@ -9,7 +9,11 @@
         <h2>Year: <%=oneMovie.year%></h2>
         <h2>Rating: <%=oneMovie.rating%></h2>
         <h2>Genre: <%=oneMovie.genre%></h2>
-        <h2>Actors: <%=oneMovie.actors%></h2>
+        <h2>Actors: </h2>
+        <% for (let i = 0; i < oneMovie.actors.length; i++){ %>
+        <h2> <%=oneMovie.actors[i].name%></h2>
+        <img src="<%=oneMovie.actors[i].image%>"/>
+       <% } %>
     </section>
 
 </body>
