@@ -19,9 +19,7 @@ const movieSchema = new mongoose.Schema({
         required: true
     },
     rating: {
-        type: Number,
-        min: [0, 'rating cannot be negative'],
-        max: 10
+        type: String,
     },
     actors: [{
         type: mongoose.Types.ObjectId,
