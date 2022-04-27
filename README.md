@@ -1,7 +1,7 @@
 # IMDB
 
 ## Technologies Used
-MongoDB | Mongoose | Express | Node | Javascript | CSS | HTML/EJS
+MongoDB | Mongoose | Express | Node | Javascript | CSS | HTML | EJS
 
 ## User Stories
 <ul>
