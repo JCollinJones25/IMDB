@@ -1,12 +1,15 @@
 
-h1 {
+.imdb {
     text-align: center;
-    border: 1px solid blue;
     order: 1;  
+    border: 1px solid #DAA520;
+    background-color: #DAA520;
+    width: 100px;
+    border-radius: 8px;
+    color:black;
 }
 
 .top-section{
-    border: 1px solid red;
     display: flex;
     justify-content: space-between;
     width: 50%
@@ -26,13 +29,23 @@ h1 {
   }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: gray;
   }
 
-a {
+nav a {
     text-decoration: none;
     text-transform: uppercase;
+    color: white;
  
+  }
+
+.movie-container a {
+    text-decoration: none;
+    color: black;
+  }
+
+  nav li {
+    padding: 10px;
   }
 
 .sidenav .closebtn {
@@ -52,4 +65,9 @@ a {
     font-size: 35px
 }
 
+.movie-container{
+  /* border: 1px solid green; */
+  width: 500px;
+  margin-top: 10px;
  
+}

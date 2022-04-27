@@ -7,13 +7,21 @@
 
     <% for(let i=0; i < movies.length; i++){ %>
         <% const movie=movies[i]%>
-        <div>
-            <h2><%=movie.name%></h2>
+        <div class='movie-container'>
+            <div class='movie-name'>
+                <h2><a href='/movies/<%=movie._id%>'><%=movie.name%></a> <h2>
+            </div>
+            <div>
+                <img class='movie-image' src='<%=movie.image%>'>
+            </div>
+            <div class='movie-info'>
+                <h4>Year: <%=movie.year%></h4>
+                <h3>Rating: <%=movie.rating%></h3>
+            </div>
+            <form method="POST" action="/movies/<%= movie._id %>?_method=DELETE">            <!-- "/products/0?_method=DELETE" -->
+                <input type="submit" value="Delete Movie"/>
+            </form>
         </div>
-        <div>
-            <img class='movie-image' src='<%=movie.image%>'>
-        </div>
-
     <%}%>
 
 </html>
