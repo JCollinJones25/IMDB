@@ -3,13 +3,17 @@
     <%- include('../partials/head.ejs')%>
 <body>
     <%- include('../partials/nav.ejs')%>
+
+    
     <h1><%=actor.name%></h1>
     <img class="show-image" src="<%=actor.image%>" alt="<%=actor.name%>">
     <section>
         <h2>Age: <%=actor.age%></h2>
         <h2>Hometown: <%=actor.hometown%></h2>
-        <h2>Movies: <%=actor.movie.name%></h2>
-        
+
+        <% for (let i=0; i < actor.movies.length; i++) {%> 
+        <h2>Movies: <%=actor.movies[i].name%></h2>
+        <% } %>
     </section>
 </body>
 </html>
