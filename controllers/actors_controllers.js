@@ -51,7 +51,8 @@ router.post('/', async (req, res, next) => {
         rating: 'add rating'
        }
        const newMovie = await db.Movie.create(newMovieData)
-        res.redirect(`/movies/`)
+       const newMovieId = await db.Movie.findByIdAndUpdate(newMovie._id, { _id: newActorData._id})
+        res.redirect(`/movies/${newMovieId._id}/edit`)
     } catch (error) {
         console.log(error);
         req.error = error;
