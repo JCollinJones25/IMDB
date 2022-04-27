@@ -17,12 +17,26 @@
 
 
 ## Entity Relationship Diagram
-
+![ERD image](https://github.com/Royal0817/Project-2/blob/main/screenshots/ERD-IMDB.png?raw=true)
 
 ## Minimum Viable Product
+- 3 key features of IMDB website
+- One improvement to the user flow
+- Two database models with a relationship between them
+- Full CRUD
 
+## Other Requirements
+- Express
+- RESTful routes
+- Templating
+- MongoDB
+- Git - 50+ commits
+- Code Style - professional
+- Visual Design
+- Deploy on Heroku
 
 ## Stretch Goals
+- DOM Manipulation (js file in public directory)
 - Use API Key to import data from OMDB
 - Search Bar Feature
 - Import Rotten Tomatoes data for the movies
