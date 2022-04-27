@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
+const mongoose = require('mongoose')
 
 // index route
 router.get('/', async (req, res, next) => {
@@ -30,10 +31,27 @@ router.get('/new', async (req, res, next) => {
 // create route
 router.post('/', async (req, res, next) => {
     try {
-        const newActorData = req.body
+        var newId =  new mongoose.Types.ObjectId()
+        const newActorData = {
+            name: req.body.name,
+            age: req.body.age,
+            image: req.body.image,
+            hometown: req.body.hometown,
+            movies: newId._id,
+        }
         const newActor = await db.Actor.create(newActorData)
         console.log(newActor)
-        res.redirect(`/movies/${newActor.movie}`)
+        const newIdName = req.body.movies
+        const newMovieData = {
+        name: req.body.movies,
+        year: 'add movie year',
+        director: 'add movie director',
+        genre: 'add movie genre',
+        image: 'add poster image url',
+        rating: 'add rating'
+       }
+       const newMovie = await db.Movie.create(newMovieData)
+        res.redirect(`/movies/`)
     } catch (error) {
         console.log(error);
         req.error = error;
