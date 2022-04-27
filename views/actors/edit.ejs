@@ -5,7 +5,7 @@
     <%- include('../partials/nav.ejs')%>
     <h1>Edit <%= actor.name%></h1>
     <div>
-      <form method="POST" action="/movies/<%= actor._id %>?_method=PUT">
+      <form method="POST" action="/actors/<%= actor._id %>?_method=PUT">
         <div>
           <label>Name: </label>
           <input type="text" name="name" value="<%=actor.name %>" />
