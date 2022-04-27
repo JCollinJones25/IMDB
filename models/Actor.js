@@ -16,12 +16,9 @@ const actorSchema = new mongoose.Schema({
     hometown: {
         type: String
     },
-    movie: {
+    movies: [{
         type: mongoose.Types.ObjectId,
         ref: 'Movie'
-    },
-    otherMovies: [{
-        type: String
     }]
 });
 

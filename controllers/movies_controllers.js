@@ -25,7 +25,7 @@ router.get('/new', (req, res) => {
 router.get('/:id/', async (req, res, next) => {
     try {
         const foundMovie = await db.Movie.findById(req.params.id)
-        // const allActors = await db.Actor.find({movie: req.params.id})
+        const allActors = await db.Actor.find({movie: req.params.id})
         // console.log(allActors.length, "Actors Found")
         const context = {
             oneMovie: foundMovie,
