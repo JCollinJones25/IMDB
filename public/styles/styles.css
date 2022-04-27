@@ -12,9 +12,44 @@
 .top-section{
     display: flex;
     justify-content: space-between;
-    width: 50%
+    width: 50%;
 }
 
+.topnatop-section .searchbar {
+  float: right;
+}
+
+.top-section input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+}
+
+.top-section button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.searchbar {
+  order: 1;
+  margin-top: 15px;
+}
+
+.search-type {
+  height: 15px;
+  width: 125px;
+}
+
+.search-button {
+  height: 31px;
+  width: 35px;
+  color: black;
+}
 .sidenav {
     height: 100%; 
     width: 0; 
