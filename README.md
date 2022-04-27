@@ -17,3 +17,12 @@
 
 
 ## Entity Relationship Diagram
+
+
+## Minimum Viable Product
+
+
+## Stretch Goals
+- Use API Key to import data from OMDB
+- Search Bar Feature
+- Import Rotten Tomatoes data for the movies
