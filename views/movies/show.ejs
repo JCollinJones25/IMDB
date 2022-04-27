@@ -13,7 +13,7 @@
         <% for (let i = 0; i < oneMovie.actors.length; i++){ %>
             <div class="actor-thumb">
                 <img src="<%=oneMovie.actors[i].image%>"/>
-                <h3> <%=oneMovie.actors[i].name%></h3>
+                <h3> <a href='/actors/<%=oneMovie.actors[i]._id%>'><%=oneMovie.actors[i].name%></a></h3>
             </div>
        <% } %>
     </section>

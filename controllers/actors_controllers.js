@@ -44,7 +44,7 @@ router.post('/', async (req, res, next) => {
 // show route
 router.get('/:actorId', async (req, res, next) => {
     try {
-        const foundActor = await db.Actor.findById(req.params.actorId).populate('movie')
+        const foundActor = await db.Actor.findById(req.params.actorId).populate('movies')
         res.render('actors/show.ejs', { actor: foundActor })
     } catch (error) {
         console.log(error);
