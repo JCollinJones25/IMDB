@@ -24,7 +24,7 @@
         </div>
         <div>
             <label>Rating: </label>
-            <input type="number" name="rating" value="<%= movie.rating %>"/>
+            <input type="text" name="rating" value="<%= movie.rating %>"/>
         </div>
         <div>
             <label>Movie Poster (URL): </label>
@@ -32,7 +32,9 @@
         </div>
         <div>
             <label>Actors: </label>
-            <input type="text" name="actors" value="<%= movie.actors %>"/>
+            <input type="text" name="actors" />
+            <input type="text" name="actors" />
+            <input type="text" name="actors" />
         </div>
         <div>
             <input type="submit" value="Edit Movie: <%= movie.name %>"/>
