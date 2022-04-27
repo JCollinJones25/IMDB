@@ -42,5 +42,5 @@ MongoDB | Mongoose | Express | Node | Javascript | CSS | HTML | EJS
 
 
 ## Entity Relationship Diagram
-![ERD image](https://github.com/Royal0817/Project-2/blob/main/screenshots/ERD-IMDB.png?raw=true)
+![ERD image](https://github.com/Royal0817/Project-2/blob/main/screenshots/IMDB-ERD.png?raw=true)
 
