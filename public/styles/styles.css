@@ -97,12 +97,13 @@ nav a {
 
 
 .bigger {
-    font-size: 35px
+    font-size: 35px;
+    margin-top: 20px;
 }
 
 .movie-container{
   /* border: 1px solid green; */
   width: 500px;
   margin-top: 10px;
- 
+
 }

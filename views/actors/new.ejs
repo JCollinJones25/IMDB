@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include ('../partials/head.ejs')%>
+<body>
+<%-include('../partials/nav.ejs') %>
+</body>
+
+<h1>New Actor</h1>
+        <form method="POST" action="/actors">
+            <div>
+                <label for="name"> Actor Name: </label>
+                <input id="name" name="name" type="text" />
+            </div>
+            <div>
+                <label for="age"> Age: </label>
+                <input id="age" name="age" type="number" />
+            </div>
+            <div>
+                <label for="image"> Image(url): </label>
+                <input id="image" name="image" type="text" />
+            </div>
+            <div>
+                <label for="hometown"> Hometown: </label>
+                <input id="hometown" name="hometown" type="text" />
+            </div>
+            <div>
+                <label for="otherMovies"> Movies: </label>
+                <input id="otherMovies" name="otherMovies" type="text" />
+            </div>
+            <input type="submit" value="Create new actor">
+        </form>
+    
+
+</html>
