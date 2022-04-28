@@ -74,12 +74,13 @@ router.get('/:actorId', async (req, res, next) => {
 
 // update route
 router.put('/:actorId', async (req, res, next) => {
-    res.send('Hitting Actor Update: ' + req.params.actorId)
+    res.redirect(`/${req.params.id}`)
 })
 
 // edit route
 router.get('/:actorId/edit', async (req, res, next) => {
-    res.send ("Hitting Actor Edit: " + req.params.actorId)
+    const context = { actor: req.body }
+    res.render ('actors/edit.ejs', context)
 })
 
 // delete route
