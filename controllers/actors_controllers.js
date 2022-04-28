@@ -7,7 +7,8 @@ const mongoose = require('mongoose')
 router.get('/', async (req, res, next) => {
     try {
         const allActors = await db.Actor.find({})
-        res.send(allActors)
+        const context = {allActors}
+        return res.render("actors/index.ejs", context);
     } catch (erro) {
         console.log(error);
         req.error = error;
