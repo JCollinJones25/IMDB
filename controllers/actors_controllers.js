@@ -32,30 +32,29 @@ router.get('/new', async (req, res, next) => {
 // create route
 router.post('/', async (req, res, next) => {
     try {
-        var newId =  db.Movie.find({name: req.body.movies})
-        console.log(newId)
-        console.log("Length is " + newId.length)
-        console.log(req.body.movies._id)
-        let array = [];
+        const newMovieData = {
+            name: req.body.movies,
+            year: 'add movie year',
+            director: 'add movie director',
+            genre: 'add movie genre',
+            image: 'add poster image url',
+            rating: 'add rating'
+           }
+           const newMovie = await db.Movie.create(newMovieData)
 
-        console.log(Object.keys(newId))
-        console.log(newId.obj.name)
-        // for(id in newId){
-        //     console.log(id)
-
-            // if (newId.length === 0) {
-            //     let createdId = new mongoose.Types.ObjectId()
-            //     array.push(createdId);
-            //     console.log(array)
-            //     console.log(createdId)
-            //     console.log(newId)
-            // }
-            // else {
-            //     array.push(newId._id);
-            //     console.log("Array is "+ array)
-            //     console.log(newId)
-            // }
-        // }
+           let array = [];
+           let newId = await db.Movie.find({name: req.body.movies})
+           
+           for(let i=0; i < newId.length; i++){
+               if (newId.length === 0){
+                let createdId = new mongoose.Types.ObjectId();
+                array.push(createdId)
+               }
+               else {
+                array.push(newId[i]._id)
+                
+               } 
+           }
         const newActorData = {
             name: req.body.name,
             age: req.body.age,
@@ -64,17 +63,6 @@ router.post('/', async (req, res, next) => {
             movies: array
         }
         const newActor = await db.Actor.create(newActorData)
-        const newIdName = req.body.movies
-        const newMovieData = {
-        name: req.body.movies,
-        year: 'add movie year',
-        director: 'add movie director',
-        genre: 'add movie genre',
-        image: 'add poster image url',
-        rating: 'add rating'
-       }
-       const newMovie = await db.Movie.create(newMovieData)
-    //    const newMovieId = await db.Movie.findbyIdAndUpdate(newActorData._id, {movies: newMovie._id})
         res.redirect(`/movies/${newMovie._id}/edit`)
     } catch (error) {
         console.log(error);

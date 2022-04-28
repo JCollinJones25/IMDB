@@ -53,7 +53,7 @@ router.get("/:id/", async (req, res, next) => {
 router.get("/:id/edit", async (req, res, next) => {
   try {
     const updatedMovie = await db.Movie.findById(req.params.id);
-    console.log(updatedMovie);
+    // console.log(updatedMovie);
     const context = {
       movie: updatedMovie,
     };
@@ -79,7 +79,7 @@ router.post("/", async (req, res, next) => {
         actors: newId._id
     }
     const newMovie = await db.Movie.create(newMovieData)
-    console.log(newMovie)
+    // console.log(newMovie)
     const actorIdName = req.body.actors
 
     const newActorData = {
