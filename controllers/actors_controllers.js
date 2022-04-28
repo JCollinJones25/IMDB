@@ -32,28 +32,38 @@ router.get('/new', async (req, res, next) => {
 // create route
 router.post('/', async (req, res, next) => {
     try {
-        var newId =  new mongoose.Types.ObjectId()
+        const newMovieData = {
+            name: req.body.movies,
+            year: 'add movie year',
+            director: 'add movie director',
+            genre: 'add movie genre',
+            image: 'add poster image url',
+            rating: 'add rating'
+           }
+           const newMovie = await db.Movie.create(newMovieData)
+
+           let array = [];
+           let newId = await db.Movie.find({name: req.body.movies})
+           
+           for(let i=0; i < newId.length; i++){
+               if (newId.length === 0){
+                let createdId = new mongoose.Types.ObjectId();
+                array.push(createdId)
+               }
+               else {
+                array.push(newId[i]._id)
+                
+               } 
+           }
         const newActorData = {
             name: req.body.name,
             age: req.body.age,
             image: req.body.image,
             hometown: req.body.hometown,
-            movies: newId._id,
+            movies: array
         }
         const newActor = await db.Actor.create(newActorData)
-        console.log(newActor)
-        const newIdName = req.body.movies
-        const newMovieData = {
-        name: req.body.movies,
-        year: 'add movie year',
-        director: 'add movie director',
-        genre: 'add movie genre',
-        image: 'add poster image url',
-        rating: 'add rating'
-       }
-       const newMovie = await db.Movie.create(newMovieData)
-       const newMovieId = await db.Movie.findByIdAndUpdate(newMovie._id, { _id: newActorData._id})
-        res.redirect(`/movies/${newMovieId._id}/edit`)
+        res.redirect(`/movies/${newMovie._id}/edit`)
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -75,7 +85,17 @@ router.get('/:actorId', async (req, res, next) => {
 
 // update route
 router.put('/:actorId', async (req, res, next) => {
-    res.redirect(`/${req.params.id}`)
+    try {
+        const updatedActor = await db.Actor.findByIdAndUpdate(req.params.id, req.body)
+        // console.log(updatedActor)
+        res.redirect(`/${req.params.id}`)
+    }
+    catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+    
 })
 
 // edit route
