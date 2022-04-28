@@ -79,6 +79,9 @@ nav a {
     color: black;
     cursor: pointer;
   }
+.movie-container a:hover {
+  text-decoration: underline;
+}
 
   nav li {
     padding: 10px;
