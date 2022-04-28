@@ -74,7 +74,7 @@ router.get('/:actorId', async (req, res, next) => {
 
 // update route
 router.put('/:actorId', async (req, res, next) => {
-    res.render('actors/edit.ejs')
+    res.redirect(`/${req.params.id}`)
 })
 
 // edit route
