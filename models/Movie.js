@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const movieSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'name cannot be empty']
+        required: [true, 'name cannot be empty'],
+        // unique: [true, 'that is already a movie']
     },
     year: {
         type: String

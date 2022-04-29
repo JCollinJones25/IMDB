@@ -91,7 +91,7 @@ router.post("/", async (req, res, next) => {
     
     const newMovieData = {
       name: req.body.name,
-      year: req.body.age,
+      year: req.body.year,
       director: req.body.director,
       genre: req.body.genre,
       rating: req.body.rating,
@@ -100,15 +100,16 @@ router.post("/", async (req, res, next) => {
     }
     const newMovie = await db.Movie.create(newMovieData)
     if (newId.length > 0) {
-      res.redirect(`/movies/${newMovie._id}`);
-    } else {
       res.redirect(`/actors/${newActor._id}/edit`);
+    } else {
+      res.redirect(`/movies/${movie._id}`);
     }
   } catch (error) {
     console.log(error);
     req.error = error;
     return next();
   }
+  
 });
 
 // delete route
@@ -155,6 +156,7 @@ router.put("/:id", async (req, res, next) => {
     });
 
     const newActor = await db.Actor.create(newActorData)
+
     for (let i = 0; i < newActorId.length; i++) {
       if (newActorId.length > 0) {
         res.redirect(`/actors/${newActor._id}/edit`);
