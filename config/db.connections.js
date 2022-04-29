@@ -3,6 +3,7 @@ require('dotenv').config()
 const mongoose = require('mongoose');
 
 const mongoConnection = process.env.MONGOURI
+console.log(mongoConnection)
 
 mongoose.connect(mongoConnection)
 
