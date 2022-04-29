@@ -139,7 +139,6 @@ router.put("/:id", async (req, res, next) => {
         array.push(newActorId[i]._id);
       }
     }
-
     const movie = await db.Movie.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
       year: req.body.age,
