@@ -88,7 +88,7 @@ router.post("/", async (req, res, next) => {
          array.push(newId[i]._id)
        }
      }
-    
+
     const newMovieData = {
         name: req.body.name,
         year: req.body.age,
@@ -126,39 +126,37 @@ router.delete("/:id", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
 
   try {
-     let array = [];
-     let newActorId = await db.Actor.find({name: req.body.actors})
+    let array = [];
+    let newActorId = await db.Actor.find({ name: req.body.actors });
 
-     for(let i  =0; i < newActorId.length; i++) {
-       if (newActorId.length === 0) {
-         let createdActorId = new mongoose.Types.ObjectId();
-         array.push(createdActorId)
-         res.redirect(`actors/${createdActorId}/edit`)
-       } else {
-         array.push(newActorId[i]._id)
-        res.redirect(`/`)
-       }
-     }
-    
-    const updatedMovieData = {
-        name: req.body.name,
-        year: req.body.year,
-        director: req.body.director,
-        genre: req.body.genre,
-        rating: req.body.rating,
-        image: req.body.image,
-        actors: array
+    for (let i = 0; i < newActorId.length; i++) {
+      if (newActorId.length === 0) {
+        let createdActorId = new mongoose.Types.ObjectId();
+        array.push(createdActorId);
+        res.redirect(`actors/${createdActorId}/edit`);
+      } else {
+        array.push(newActorId[i]._id);
+        res.redirect(`/`);
+      }
     }
-    const updatedMovie = await db.Movie.create(updatedMovieData)
 
-    res.redirect(`/movies`)
+    const updatedMovieData = {
+      name: req.body.name,
+      year: req.body.year,
+      director: req.body.director,
+      genre: req.body.genre,
+      rating: req.body.rating,
+      image: req.body.image,
+      actors: array,
+    };
+    const updatedMovie = await db.Movie.create(updatedMovieData);
+
+    res.redirect(`/movies`);
   } catch (error) {
     console.log(error);
     req.error = error;
     return next();
   }
- 
-  
 });
 
 module.exports = router;
