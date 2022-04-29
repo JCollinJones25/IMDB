@@ -69,22 +69,20 @@ router.post("/", async (req, res, next) => {
   try {
     const newActorData = {
       name: req.body.actors,
-      age: 'add actor age',
-      image: 'add actor image',
-      hometown: 'add actor hometown',
+      movies: [req.params.id]
      }
-     const newActor = await db.Actor.create(newActorData)
-    
+     
+
     let array = [];
-    let newId = await db.Actor.find({name: req.body.actors})
+    let newActorId = await db.Actor.find({name: req.body.actors})
     
-    for(let i=0; i < newId.length; i++) {
-      if (newId.length === 0) {
-        let createdId = new mongoose.Types.ObjectId();
-        array.push(createdId)
-        //  res.redirect(`/actors/${newActor._id}/edit`)
+    for(let i=0; i < newActorId.length; i++) {
+      if (newActorId.length === 0) {
+        const newActor = await db.Actor.create(newActorData)
+        array.push(newActor)
+        
       } else {
-        array.push(newId[i]._id)
+        array.push(newActorId[i]._id)
       }
     }
     
@@ -98,8 +96,8 @@ router.post("/", async (req, res, next) => {
       actors: array
     }
     const newMovie = await db.Movie.create(newMovieData)
-    if (newId.length > 0) {
-      res.redirect(`/actors/${newActor._id}/edit`);
+    if (newActorId.length > 0) {
+      res.redirect(`/actors/${newActorId._id}/edit`);
     } else {
       res.redirect(`/movies/${newMovie._id}`);
     }
