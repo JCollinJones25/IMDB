@@ -147,7 +147,7 @@ router.put("/:id", async (req, res, next) => {
     }
     const movie = await db.Movie.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
-      year: req.body.age,
+      year: req.body.year,
       director: req.body.director,
       genre: req.body.genre,
       rating: req.body.rating,
@@ -155,11 +155,11 @@ router.put("/:id", async (req, res, next) => {
     });
 
     const newActor = await db.Actor.create(newActorData)
-    for (let i = 0; i < newId.length; i++) {
-      if (newId.length > 0) {
-        res.redirect(`/movies/${newMovie._id}`);
-      } else {
+    for (let i = 0; i < newActorId.length; i++) {
+      if (newActorId.length > 0) {
         res.redirect(`/actors/${newActor._id}/edit`);
+      } else {
+        res.redirect(`/movies/${movie._id}`);
       } 
     }
   } catch (error) {
