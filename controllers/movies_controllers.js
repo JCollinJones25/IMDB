@@ -100,9 +100,9 @@ router.post("/", async (req, res, next) => {
     }
     const newMovie = await db.Movie.create(newMovieData)
     if (newId.length > 0) {
-      res.redirect(`/movies/${newMovie._id}`);
-    } else {
       res.redirect(`/actors/${newActor._id}/edit`);
+    } else {
+      res.redirect(`/movies/${newMovie._id}`);
     }
   } catch (error) {
     console.log(error);
