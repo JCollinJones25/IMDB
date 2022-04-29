@@ -9,7 +9,7 @@
         <h2>Year: <%=oneMovie.year%></h2>
         <h2>Rating: <%=oneMovie.rating%></h2>
         <h2>Genre: <%=oneMovie.genre%></h2>
-        <form method="POST" action="/movies/?_method=DELETE">           
+        <form method="POST" action="/movies/<%=oneMovie._id%>?_method=DELETE">           
             <input type="submit" value="Delete Movie"/>
         </form>
         <form method="PUT" action="/movies/<%=oneMovie._id%>/edit/?_method=EDIT">           
