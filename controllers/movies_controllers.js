@@ -124,11 +124,8 @@ router.delete("/:id", async (req, res, next) => {
 
 // update route
 router.put("/:id", async (req, res, next) => {
- 
-// <------------ work in progress --------------->
 
   try {
-    //  const updatedMovie = await db.Movie.create({})
      let array = [];
      let newActorId = await db.Actor.find({name: req.body.actors})
 
@@ -139,6 +136,7 @@ router.put("/:id", async (req, res, next) => {
          res.redirect(`actors/${createdActorId}/edit`)
        } else {
          array.push(newActorId[i]._id)
+        res.redirect(`/`)
        }
      }
     
