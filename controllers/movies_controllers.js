@@ -114,8 +114,7 @@ router.post("/", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const deletedMovie = await db.Movie.findByIdAndDelete(req.params.id);
-    const deletedActors = await db.Actor.deleteMany({ movie: req.params.id });
-    console.log(deletedActors);
+
     return res.redirect("/movies");
   } catch {
     console.log(error);

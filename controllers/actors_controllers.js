@@ -103,7 +103,8 @@ router.put("/:id", async (req, res, next) => {
         name: req.body.name,
         age: req.body.age,
         image: req.body.image,
-        hometown: req.body.hometown
+        hometown: req.body.hometown,
+        movies: array
     });
     res.redirect(`/actors/${req.params.id}`);
   } catch (error) {
@@ -127,11 +128,12 @@ router.get("/:id/edit", async (req, res, next) => {
 });
 
 // delete route
-router.delete("/actorId", async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
-    const deleteActor = await db.Actor.findByIdAndDelete(req.params.actorId);
-    console.log(deleteActor.id, "<<< Actor | ", deleteActor.movie, "<<< Movie");
-    res.redirect(`/movies/${deleteActor.movie}`);
+    const deletedActor = await db.Actor.findByIdAndDelete(req.params.id);
+    // deletedActor.splice(req.params.id, 1)
+    console.log(deletedActor.id, "<<< Actor | ", deletedActor.movie, "<<< Movie");
+    res.redirect(`/actors/`);
   } catch (error) {
     console.log(error);
     req.error = error;

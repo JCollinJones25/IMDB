@@ -14,7 +14,7 @@
         <% for (let i=0; i < actor.movies.length; i++) {%> 
         <h2>Movies: <%=actor.movies[i].name%></h2>
         <% } %>
-        <form method="POST" action="/actors/?_method=DELETE">           
+        <form method="POST" action="/actors/<%=actor._id%>?_method=DELETE">           
             <input type="submit" value="Delete Actor"/>
         </form>
         <form method="PUT" action="/actors/<%=actor._id%>/edit/?_method=EDIT">           
