@@ -79,28 +79,31 @@ router.post("/", async (req, res, next) => {
 
      let array = [];
      let newId = await db.Actor.find({name: req.body.actors})
-
+     
      for(let i=0; i < newId.length; i++) {
        if (newId.length === 0) {
          let createdId = new mongoose.Types.ObjectId();
          array.push(createdId)
-       } else {
-         array.push(newId[i]._id)
-       }
-     }
-
+        //  res.redirect(`/actors/${newActor._id}/edit`)
+      } else {
+        array.push(newId[i]._id)
+      }
+    }
+    
     const newMovieData = {
-        name: req.body.name,
-        year: req.body.age,
-        director: req.body.director,
-        genre: req.body.genre,
-        rating: req.body.rating,
-        image: req.body.image,
-        actors: array
+      name: req.body.name,
+      year: req.body.age,
+      director: req.body.director,
+      genre: req.body.genre,
+      rating: req.body.rating,
+      image: req.body.image,
+      actors: array
     }
     const newMovie = await db.Movie.create(newMovieData)
 
     res.redirect(`/actors/${newActor._id}/edit`)
+    // res.redirect(`/`)
+    
   } catch (error) {
     console.log(error);
     req.error = error;
