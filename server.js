@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 
 require('./config/db.connections')
@@ -8,7 +10,7 @@ const controllers = require('./controllers')
 
 const app = express()
 
-const PORT = 4022
+const PORT = process.env.PORT
 
 app.set('view engine', 'ejs')
 
