@@ -84,25 +84,61 @@ router.get('/:actorId', async (req, res, next) => {
 })
 
 // update route
-router.put('/:actorId', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
+    
+
     try {
-        const updatedActor = await db.Actor.findByIdAndUpdate(req.params.id, req.body)
-        // console.log(updatedActor)
-        res.redirect(`/${req.params.id}`)
-    }
-    catch (error) {
+        let array = [];
+        let newMovieId = await db.Movie.find({ name: req.body.movies });
+    
+        for (let i = 0; i < newMovieId.length; i++) {
+          if (newMovieId.length === 0) {
+            let createdMovieId = new mongoose.Types.ObjectId();
+            array.push(createdMovieId);
+            res.redirect(`movies/${createdMovieId}/edit`);
+          } else {
+            array.push(newMovieId[i]._id);
+            // res.redirect(`/`);
+          }
+        }
+    
+        const newActorData = {
+            name: req.body.name,
+            age: req.body.age,
+            image: req.body.image,
+            hometown: req.body.hometown,
+            movies: array
+        }
+        const updatedActor = await db.Actor.create(newActorData);
+    
+        res.redirect(`/actors/${updatedActor._id}`);
+      } catch (error) {
         console.log(error);
         req.error = error;
         return next();
-    }
-    
+      }
+
+
+
+    // try {
+    //     const updatedActor = await db.Actor.findByIdAndUpdate(req.params.id, req.body)
+    //     // console.log(updatedActor)
+    //     res.redirect(`/${req.params.id}`)
+    // }
+    // catch (error) {
+    //     console.log(error);
+    //     req.error = error;
+    //     return next();
+    // }
 })
 
 // edit route
-router.get('/:actorId/edit', async (req, res, next) => {
+router.get('/:id/edit', async (req, res, next) => {
     try {
         const updatedActor = await db.Actor.findById(req.params.id);
         const context = { actor: updatedActor}
+        // console.log(actor)
+        // console.log(req.params.id)
         res.render ('actors/edit.ejs', context)
     }
     catch (error) {

@@ -3,7 +3,7 @@
   <%- include('../partials/head.ejs', { pageName: "Edit Actor" }) %>
   <body>
     <%- include('../partials/nav.ejs')%>
-    <h1>Edit <%= actor.name%></h1>
+    <h1>Edit <%= actor.name%> </h1>
     <div>
       <form method="POST" action="/actors/<%= actor._id %>?_method=PUT">
         <div>
