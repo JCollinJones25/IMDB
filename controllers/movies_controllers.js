@@ -99,10 +99,11 @@ router.post("/", async (req, res, next) => {
       actors: array
     }
     const newMovie = await db.Movie.create(newMovieData)
-
-    res.redirect(`/actors/${newActor._id}/edit`)
-    // res.redirect(`/`)
-    
+    if (newId.length > 0) {
+      res.redirect(`/movies/${newMovie._id}`);
+    } else {
+      res.redirect(`/actors/${newActor._id}/edit`);
+    }
   } catch (error) {
     console.log(error);
     req.error = error;
@@ -127,6 +128,12 @@ router.delete("/:id", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
 
   try {
+    const newActorData = {
+      name: req.body.actors,
+      age: 'add actor age',
+      image: 'add actor image',
+      hometown: 'add actor hometown',
+     }
     let array = [];
     let newActorId = await db.Actor.find({ name: req.body.actors });
 
@@ -134,7 +141,6 @@ router.put("/:id", async (req, res, next) => {
       if (newActorId.length === 0) {
         let createdActorId = new mongoose.Types.ObjectId();
         array.push(createdActorId);
-        res.redirect(`actors/${createdActorId}/edit`);
       } else {
         array.push(newActorId[i]._id);
       }
@@ -147,7 +153,15 @@ router.put("/:id", async (req, res, next) => {
       rating: req.body.rating,
       image: req.body.image
     });
-    res.redirect(`/movies`);
+
+    const newActor = await db.Actor.create(newActorData)
+    for (let i = 0; i < newId.length; i++) {
+      if (newId.length > 0) {
+        res.redirect(`/movies/${newMovie._id}`);
+      } else {
+        res.redirect(`/actors/${newActor._id}/edit`);
+      } 
+    }
   } catch (error) {
     console.log(error);
     req.error = error;

@@ -59,8 +59,8 @@ router.post("/", async (req, res, next) => {
       hometown: req.body.hometown,
       movies: array,
     };
-    console.log(newId);
-    console.log(newId.length);
+    // console.log(newId);
+    // console.log(newId.length);
     const newActor = await db.Actor.create(newActorData);
     if (newId.length > 0) {
       res.redirect(`/actors/${newActor._id}`);
@@ -107,7 +107,6 @@ router.put("/:id", async (req, res, next) => {
       if (newMovieId.length === 0) {
         let createdMovieId = new mongoose.Types.ObjectId();
         array.push(createdMovieId);
-        // res.redirect(`movies/${createdMovieId}/edit`);
     } else {
         array.push(newMovieId[i]._id);
     }
