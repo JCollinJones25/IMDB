@@ -124,18 +124,43 @@ router.delete("/:id", async (req, res, next) => {
 
 // update route
 router.put("/:id", async (req, res, next) => {
+ 
+// <------------ work in progress --------------->
+
   try {
-    const updatedMovie = await db.Movie.findByIdAndUpdate(
-      req.params.id,
-      req.body
-    );
-    console.log(updatedMovie);
-    return res.redirect("/movies");
+    //  const updatedMovie = await db.Movie.create({})
+     let array = [];
+     let newActorId = await db.Actor.find({name: req.body.actors})
+
+     for(let i  =0; i < newActorId.length; i++) {
+       if (newActorId.length === 0) {
+         let createdActorId = new mongoose.Types.ObjectId();
+         array.push(createdActorId)
+         res.redirect(`actors/${createdActorId}/edit`)
+       } else {
+         array.push(newActorId[i]._id)
+       }
+     }
+    
+    const updatedMovieData = {
+        name: req.body.name,
+        year: req.body.year,
+        director: req.body.director,
+        genre: req.body.genre,
+        rating: req.body.rating,
+        image: req.body.image,
+        actors: array
+    }
+    const updatedMovie = await db.Movie.create(updatedMovieData)
+
+    res.redirect(`/movies`)
   } catch (error) {
     console.log(error);
     req.error = error;
     return next();
   }
+ 
+  
 });
 
 module.exports = router;
