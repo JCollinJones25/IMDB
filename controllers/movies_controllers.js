@@ -73,7 +73,6 @@ router.post("/", async (req, res, next) => {
       age: 'add actor age',
       image: 'add actor image',
       hometown: 'add actor hometown',
-      movies: 'add actors movies',
      }
      const newActor = await db.Actor.create(newActorData)
 

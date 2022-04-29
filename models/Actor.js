@@ -10,7 +10,7 @@ const actorSchema = new mongoose.Schema({
         required: true
     },
     age: {
-        type: Number,
+        type: String,
         min: 0
     },
     hometown: {

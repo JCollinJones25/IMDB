@@ -100,8 +100,17 @@ router.put('/:actorId', async (req, res, next) => {
 
 // edit route
 router.get('/:actorId/edit', async (req, res, next) => {
-    const context = { actor: req.body }
-    res.render ('actors/edit.ejs', context)
+    try {
+        const updatedActor = await db.Actor.findById(req.params.id);
+        const context = { actor: updatedActor}
+        res.render ('actors/edit.ejs', context)
+    }
+    catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+    
 })
 
 // delete route
