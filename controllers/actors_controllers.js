@@ -93,11 +93,7 @@ router.put("/:id", async (req, res, next) => {
   try {
     const newMovieData = {
       name: req.body.movies,
-      year: "add movie year",
-      director: "add movie director",
-      genre: "add movie genre",
-      image: "add poster image url",
-      rating: "add rating",
+      actors: [req.params.id]
     };
 
     let array = [];
@@ -105,7 +101,7 @@ router.put("/:id", async (req, res, next) => {
 
     for (let i = 0; i < newMovieId.length; i++) {
       if (newMovieId.length === 0) {
-        let createdMovieId = new mongoose.Types.ObjectId();
+        let createdMovieId = await db.Movie.create(newMovieData);
         array.push(createdMovieId);
     } else {
         array.push(newMovieId[i]._id);
@@ -117,16 +113,14 @@ const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
     age: req.body.age,
     image: req.body.image,
     hometown: req.body.hometown,
-    movies: array,
+    movies: array
 });
-
-const newMovie = await db.Movie.create(newMovieData);
 
 for (let i = 0; i < newMovieId.length; i++) {
     if (newMovieId.length > 0) {
-      res.redirect(`/movies/${newMovie[0]._id}/edit`);
+      res.redirect(`/movies/`);
     } else {
-      res.redirect(`/actors/${newActor._id}`);
+      res.redirect(`/actors/`);
     } 
   }
 
