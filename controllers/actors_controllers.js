@@ -102,16 +102,24 @@ router.put('/:id', async (req, res, next) => {
           }
         }
     
-        const newActorData = {
-            name: req.body.name,
-            age: req.body.age,
-            image: req.body.image,
-            hometown: req.body.hometown,
-            movies: array
+        
+        const actor = db.Actor
+        await db.Actor.findOne({name: req.body.name}), (error, result) => {
+            if (error) {
+                console.log(error)
+            } else {
+                result.actor[req.params.id].name = req.body.name
+                result.actor[req.params.id].age = req.body.age
+                result.actor[req.params.id].image = req.body.image
+                result.actor[req.params.id].hometown = req.body.hometown
+                console.log(result)
+            }
         }
-        const updatedActor = await db.Actor.create(newActorData);
+
+        const updatedActor = await db.Actor.create(actor);
     
-        res.redirect(`/actors/${updatedActor._id}`);
+        // res.redirect(`/actors/${updatedActor._id}`);
+        res.redirect('/actors')
       } catch (error) {
         console.log(error);
         req.error = error;
