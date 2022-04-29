@@ -138,21 +138,17 @@ router.put("/:id", async (req, res, next) => {
         res.redirect(`actors/${createdActorId}/edit`);
       } else {
         array.push(newActorId[i]._id);
-        res.redirect(`/`);
       }
     }
 
-    const updatedMovieData = {
+    const movie = await db.Movie.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
-      year: req.body.year,
+      year: req.body.age,
       director: req.body.director,
       genre: req.body.genre,
       rating: req.body.rating,
-      image: req.body.image,
-      actors: array,
-    };
-    const updatedMovie = await db.Movie.create(updatedMovieData);
-
+      image: req.body.image
+    });
     res.redirect(`/movies`);
   } catch (error) {
     console.log(error);
