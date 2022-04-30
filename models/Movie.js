@@ -4,6 +4,7 @@ const movieSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'name cannot be empty'],
+        unique: true
     },
     year: {
         type: String

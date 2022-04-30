@@ -40,12 +40,12 @@ router.post("/", async (req, res, next) => {
       
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
-    for (let i = 0; i < newMovieId.length; i++) {
+    for (let i = 0; i <= newMovieId.length; i++) {
       if (newMovieId.length === 0) {
         const newMovie = await db.Movie.create(newMovieData);
         array.push(newMovie);
       } else {
-        array.push(newMovieId[i]._id);
+        array.push(newMovieId[0]._id);
       }
     }
     const newActorData = {
@@ -57,6 +57,8 @@ router.post("/", async (req, res, next) => {
     };
    
     const newActor = await db.Actor.create(newActorData);
+
+    const updateMovie = await db.Movie.findByIdAndUpdate(array[0]._id, {actors: newActor._id})
 
    
     for(let i=0; i <= newMovieId.length; i++) {
@@ -98,16 +100,16 @@ router.put("/:id", async (req, res, next) => {
 
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
-    // console.log(newMovieId)
-    // let createdMovieId = await db.Movie.create(newMovieData);
-    for (let i = 0; i < newMovieId.length; i++) {
+    
+    console.log(newMovieId.length + 'newmovieidlength')
+    for (let i = 0; i <= newMovieId.length; i++) {
       if (newMovieId.length === 0) {
         let createdMovieId = await db.Movie.create(newMovieData);
-        // console.log(createdMovieId)
         array.push(createdMovieId);
+    } else if (newMovieId.length === 1 && i === 0) {
+        array.push(newMovieId[0]._id);
     } else {
-        array.push(newMovieId[i]._id);
-        // console.log("newMovieId[i]._id --->>>>  " + newMovieId[i]._id);
+        console.log("this should never log")
     }
 }
 
@@ -119,17 +121,11 @@ const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
     movies: array
 });
 
-// for (let i = 0; i <= createdMovieId.length; i++) {
-//     if (createdMovieId.length > 0) {
-//       res.redirect(`/actors/${[req.params.id]}`);
-//     } else {
-//       res.redirect(`/movies/${array[0]._id}/edit`);
-//     } 
-//   }
+
 for (let i = 0; i <= newMovieId.length; i++) {
     if (newMovieId.length > 0) {
       res.redirect(`/actors/${[req.params.id]}`);
-    } else {
+    } else if (newMovieId.length === 0) {
       res.redirect(`/movies/${array[0]._id}/edit`);
     } 
   }

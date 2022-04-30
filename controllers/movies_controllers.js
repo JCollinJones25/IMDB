@@ -81,7 +81,7 @@ router.post("/", async (req, res, next) => {
         const newActor = await db.Actor.create(newActorData)
         array.push(newActor)
       } else {
-        array.push(newActorId[i]._id)
+        array.push(newActorId[0]._id)
       }
     }
     
@@ -98,7 +98,10 @@ router.post("/", async (req, res, next) => {
     console.log(array[0])
     console.log(array[0]._id)
     const newMovie = await db.Movie.create(newMovieData)
+
     const updateActor = await db.Actor.findByIdAndUpdate(array[0]._id, {movies: newMovie._id})
+
+    
     for(let i=0; i <= newActorId.length; i++) {
     if (newActorId.length > 0) {
       res.redirect(`/movies/${newMovie._id}`);
@@ -136,13 +139,16 @@ router.put("/:id", async (req, res, next) => {
      }
     let array = [];
     let newActorId = await db.Actor.find({ name: req.body.actors });
-    // let createdActorId = await db.Actor.create(newActorData)
-    for (let i = 0; i < newActorId.length; i++) {
+     
+    console.log(newActorId.length)
+    for (let i = 0; i <= newActorId.length; i++) {
       if (newActorId.length === 0) {
         let createdActorId = await db.Actor.create(newActorData)
         array.push(createdActorId);
+      } else if (newActorId.length === 1 && i === 0) {
+        array.push(newActorId[0]._id);
       } else {
-        array.push(newActorId[i]._id);
+        console.log('This should ever log')
       }
     }
     const movie = await db.Movie.findByIdAndUpdate(req.params.id, {
@@ -155,18 +161,13 @@ router.put("/:id", async (req, res, next) => {
       actors: array
     });
 
-    // for (let i = 0; i <= createdActorId.length; i++) {
-    //   if (createdActorId.length > 0) {
-    //     res.redirect(`/movies`);
-    //   } else {
-    //     res.redirect(`/actors/${createdActorId[0]._id}/edit`);
-    //   } 
-    // }
+  
+    console.log(array)
     for (let i = 0; i <= newActorId.length; i++) {
       if (newActorId.length > 0) {
         res.redirect(`/movies`);
-      } else {
-        res.redirect(`/actors/${newActorId[0]._id}/edit`);
+      } else if(newActorId.length === 0) {
+        res.redirect(`/actors/${array[0]._id}/edit`);
       } 
     }
 
