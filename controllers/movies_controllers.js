@@ -35,7 +35,7 @@ router.get("/:id/", async (req, res, next) => {
     );
     // const allActors = await db.Actor.find()
     // console.log(allActors.length, "Actors Found")
-    console.log(foundMovie);
+    // console.log(foundMovie);
     const context = {
       oneMovie: foundMovie,
       // actors: allActors
@@ -69,13 +69,14 @@ router.post("/", async (req, res, next) => {
   try {
     const newActorData = {
       name: req.body.actors,
-      movies: [req.params.id]
+      movies: req.body.movies
      }
+    
 
     let array = [];
     let newActorId = await db.Actor.find({name: req.body.actors})
-    
-    for(let i=0; i < newActorId.length; i++) {
+    console.log(newActorId.length)
+    for(let i=0; i <= newActorId.length; i++) {
       if (newActorId.length === 0) {
         const newActor = await db.Actor.create(newActorData)
         array.push(newActor)
@@ -93,7 +94,11 @@ router.post("/", async (req, res, next) => {
       image: req.body.image,
       actors: array
     }
+    console.log(array)
+    console.log(array[0])
+    console.log(array[0]._id)
     const newMovie = await db.Movie.create(newMovieData)
+    const updateActor = await db.Actor.findByIdAndUpdate(array[0]._id, {movies: newMovie._id})
     for(let i=0; i <= newActorId.length; i++) {
     if (newActorId.length > 0) {
       res.redirect(`/movies/${newMovie._id}`);
