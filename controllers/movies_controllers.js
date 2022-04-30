@@ -71,16 +71,14 @@ router.post("/", async (req, res, next) => {
       name: req.body.actors,
       movies: [req.params.id]
      }
-     
 
     let array = [];
     let newActorId = await db.Actor.find({name: req.body.actors})
     
-    for(let i=0; i < newActorId.length; i++) {
+    for(let i=0; i <= newActorId.length; i++) {
       if (newActorId.length === 0) {
         const newActor = await db.Actor.create(newActorData)
         array.push(newActor)
-        
       } else {
         array.push(newActorId[i]._id)
       }
@@ -96,11 +94,13 @@ router.post("/", async (req, res, next) => {
       actors: array
     }
     const newMovie = await db.Movie.create(newMovieData)
+    for(let i=0; i <= newActorId.length; i++) {
     if (newActorId.length > 0) {
-      res.redirect(`/actors/${newActorId._id}/edit`);
-    } else {
       res.redirect(`/movies/${newMovie._id}`);
+    } else {
+      res.redirect(`/actors/${array[0]._id}/edit`);
     }
+  }
   } catch (error) {
     console.log(error);
     req.error = error;

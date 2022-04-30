@@ -38,10 +38,8 @@ router.post("/", async (req, res, next) => {
       actors: [req.params.id]
     };
       
-    console.log(newMovieData.actors)
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
-    console.log(newMovieId.length)
     for (let i = 0; i <= newMovieId.length; i++) {
         console.log(i)
       if (newMovieId.length === 0) {
@@ -101,8 +99,10 @@ router.put("/:id", async (req, res, next) => {
 
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
-
-    for (let i = 0; i < newMovieId.length; i++) {
+    console.log("New movie id " + newMovieId)
+    console.log("New movie id length " + newMovieId.length)
+    for (let i = 0; i <= newMovieId.length; i++) {
+        console.log(newMovieId[i])
       if (newMovieId.length === 0) {
         let createdMovieId = await db.Movie.create(newMovieData);
         array.push(createdMovieId);
@@ -119,11 +119,11 @@ const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
     movies: array
 });
 
-for (let i = 0; i < newMovieId.length; i++) {
+for (let i = 0; i <= newMovieId.length; i++) {
     if (newMovieId.length > 0) {
-      res.redirect(`/movies/`);
+      res.redirect(`/actors/${[req.params.id]}`);
     } else {
-      res.redirect(`/actors/`);
+      res.redirect(`/movies/${array[0]._id}`);
     } 
   }
 
