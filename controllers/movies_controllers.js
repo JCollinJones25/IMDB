@@ -75,7 +75,7 @@ router.post("/", async (req, res, next) => {
     let array = [];
     let newActorId = await db.Actor.find({name: req.body.actors})
     
-    for(let i=0; i <= newActorId.length; i++) {
+    for(let i=0; i < newActorId.length; i++) {
       if (newActorId.length === 0) {
         const newActor = await db.Actor.create(newActorData)
         array.push(newActor)
@@ -131,7 +131,10 @@ router.put("/:id", async (req, res, next) => {
      }
     let array = [];
     let newActorId = await db.Actor.find({ name: req.body.actors });
-    for (let i = 0; i <= newActorId.length; i++) {
+    console.log(newActorId)
+    console.log(newActorId.length)
+    for (let i = 0; i < newActorId.length; i++) {
+      console.log(i)
       if (newActorId.length === 0) {
         let createdActorId = await db.Actor.create(newActorData)
         array.push(createdActorId);
@@ -152,7 +155,7 @@ router.put("/:id", async (req, res, next) => {
 
     for (let i = 0; i <= newActorId.length; i++) {
       if (newActorId.length > 0) {
-        res.redirect(`/movies/`);
+        res.redirect(`/movies`);
       } else {
         res.redirect(`/actors/${newActorId[0]._id}/edit`);
       } 

@@ -40,7 +40,7 @@ router.post("/", async (req, res, next) => {
       
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
-    for (let i = 0; i <= newMovieId.length; i++) {
+    for (let i = 0; i < newMovieId.length; i++) {
       if (newMovieId.length === 0) {
         const newMovie = await db.Movie.create(newMovieData);
         array.push(newMovie);
@@ -99,7 +99,7 @@ router.put("/:id", async (req, res, next) => {
     let newMovieId = await db.Movie.find({ name: req.body.movies });
     console.log("New movie id " + newMovieId)
     console.log("New movie id length " + newMovieId.length)
-    for (let i = 0; i <= newMovieId.length; i++) {
+    for (let i = 0; i < newMovieId.length; i++) {
         console.log(newMovieId[i])
       if (newMovieId.length === 0) {
         let createdMovieId = await db.Movie.create(newMovieData);
