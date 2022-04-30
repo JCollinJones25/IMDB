@@ -6,7 +6,9 @@
   </body>
   <a href="#" class="top">↑</a>
   <div class="all-movies">
-    <% for(let i=0; i < movies.length; i++){ %> <% const movie=movies[i]%>
+    <% movies.sort((a, b) => a.name.localeCompare(b.name)) %>
+    <% for(let i=0; i < movies.length; i++){ %> 
+      <% const movie=movies[i]%>
     <div class="movie-container">
       <div>
         <a href="/movies/<%=movie._id%>">
