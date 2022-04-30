@@ -9,11 +9,13 @@
         <% const movie=movies[i]%>
         <div class='movie-container'>
             <div>
-                <img class='movie-image' src='<%=movie.image%>'>
+                <a href="/movies/<%=movie._id%>">
+                    <img class='movie-image' src='<%=movie.image%>'>
+                </a>
             </div>
             <div class='movie-text'>
             <div class='movie-name'>
-                <h2><a href='/movies/<%=movie._id%>'><%=movie.name%></a> <h2>
+                <h2><a href='/movies/<%=movie._id%>'><%=movie.name%></a></h2>
             </div>
             <div class='movie-info'>
                 <h4> <%=movie.year%></h4>
