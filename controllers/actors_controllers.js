@@ -44,8 +44,10 @@ router.post("/", async (req, res, next) => {
       if (newMovieId.length === 0) {
         const newMovie = await db.Movie.create(newMovieData);
         array.push(newMovie);
-      } else {
+      } else if (newMovieId.length === 1 && i === 0) {
         array.push(newMovieId[0]._id);
+      } else {
+          console.log('this should never be logged')
       }
     }
     const newActorData = {
