@@ -64,7 +64,7 @@ router.post("/", async (req, res, next) => {
       res.redirect(`/actors/${newActor._id}`);
       
     } else {
-        res.redirect(`/movies/${array[0]._id}/edit`);
+        res.redirect(`/actors/${array[0]._id}/edit`);
     }
     }
   } catch (error) {
@@ -98,12 +98,16 @@ router.put("/:id", async (req, res, next) => {
 
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
+    // console.log(newMovieId)
+    // let createdMovieId = await db.Movie.create(newMovieData);
     for (let i = 0; i < newMovieId.length; i++) {
       if (newMovieId.length === 0) {
         let createdMovieId = await db.Movie.create(newMovieData);
+        // console.log(createdMovieId)
         array.push(createdMovieId);
     } else {
         array.push(newMovieId[i]._id);
+        // console.log("newMovieId[i]._id --->>>>  " + newMovieId[i]._id);
     }
 }
 
@@ -115,6 +119,13 @@ const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
     movies: array
 });
 
+// for (let i = 0; i <= createdMovieId.length; i++) {
+//     if (createdMovieId.length > 0) {
+//       res.redirect(`/actors/${[req.params.id]}`);
+//     } else {
+//       res.redirect(`/movies/${array[0]._id}/edit`);
+//     } 
+//   }
 for (let i = 0; i <= newMovieId.length; i++) {
     if (newMovieId.length > 0) {
       res.redirect(`/actors/${[req.params.id]}`);
@@ -149,11 +160,9 @@ router.delete("/:id", async (req, res, next) => {
     const deletedActor = await db.Actor.findByIdAndDelete(req.params.id);
     // deletedActor.splice(req.params.id, 1)
     console.log(
-      deletedActor.id,
-      "<<< Actor | ",
-      deletedActor.movie,
-      "<<< Movie"
-    );
+        deletedActor.id, "<<< Actor | ", 
+        deletedActor.movie, "<<< Movie"
+        );
     res.redirect(`/actors/`);
   } catch (error) {
     console.log(error);

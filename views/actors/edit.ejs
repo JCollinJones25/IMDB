@@ -24,7 +24,9 @@
         </div>
         <div>
           <label>Movies: </label>
-          <input type="text" name="movies" value="<%= actor.movies %>" />
+          <% for (let i = 0; i < actor.movies.length; i++) { %>
+          <input type="text" name="movies" value="<%= actor.movies[i].name %>" />
+          <% } %>
         </div>
         <div>
           <input type="submit" value="Edit Actor: <%= actor.name %>" />

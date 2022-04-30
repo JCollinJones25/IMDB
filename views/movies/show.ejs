@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head.ejs')%>
-<body>
+  <%- include('../partials/head.ejs')%>
+  <body>
     <%- include('../partials/nav.ejs')%>
     <h1><%=oneMovie.name%></h1>
-    <img class="show-image" src="<%=oneMovie.image%>" alt="<%=oneMovie.name%>">
+    <img
+      class="show-image"
+      src="<%=oneMovie.image%>"
+      alt="<%=oneMovie.name%>"
+    />
     <section>
-        <h2>Year: <%=oneMovie.year%></h2>
-        <h2>Rating: <%=oneMovie.rating%></h2>
-        <h2>Genre: <%=oneMovie.genre%></h2>
-        <form method="POST" action="/movies/<%=oneMovie._id%>?_method=DELETE">           
-            <input type="submit" value="Delete Movie"/>
-        </form>
-        <form method="PUT" action="/movies/<%=oneMovie._id%>/edit/?_method=EDIT">           
-            <input type="submit" value="Edit Movie"/>
-        </form>
-        <h2>Actors: </h2>
-        <% for (let i = 0; i < oneMovie.actors.length; i++){ %>
-            <div class="actor-thumb">
-                <img src="<%=oneMovie.actors[i].image%>"/>
-                <h3> <a href='/actors/<%=oneMovie.actors[i]._id%>'><%=oneMovie.actors[i].name%></a></h3>
-            </div>
-       <% } %>
+      <h2>Year: <%=oneMovie.year%></h2>
+      <h2>Rating: <%=oneMovie.rating%></h2>
+      <h2>Genre: <%=oneMovie.genre%></h2>
+      <form method="POST" action="/movies/<%=oneMovie._id%>?_method=DELETE">
+        <input type="submit" value="Delete Movie" />
+      </form>
+      <form method="PUT" action="/movies/<%=oneMovie._id%>/edit/?_method=EDIT">
+        <input type="submit" value="Edit Movie" />
+      </form>
+      <h2>Actors:</h2>
+      <% for (let i = 0; i < oneMovie.actors.length; i++){ %>
+      <div class="actor-thumb">
+        <a href="/actors/<%=oneMovie.actors[i]._id%>">
+            <img class="movie-show-actor-img" src="<%=oneMovie.actors[i].image%>" />
+        </a>
+        <h3>
+          <a href="/actors/<%=oneMovie.actors[i]._id%>"><%=oneMovie.actors[i].name%>
+        </a>
+        </h3>
+      </div>
+      <% } %>
     </section>
-
-</body>
+  </body>
 </html>

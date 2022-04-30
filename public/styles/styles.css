@@ -57,6 +57,7 @@
   width: 35px;
   color: black;
 }
+
 .sidenav {
     height: 100%; 
     width: 0; 
@@ -68,7 +69,6 @@
     overflow-x: hidden; 
     padding-top: 60px; 
     transition: 0.5s; 
-  
   }
 
 .sidenav a:hover {
@@ -117,6 +117,7 @@ nav a {
 body {
   background-color: black;
   color: white;
+
 }
 .all-movies {
   width: 80%;
@@ -124,7 +125,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
 }
 
 .movie-container{
@@ -160,9 +160,61 @@ body {
 }
 
 .show-image {
-  max-width: 50%;
-  max-height: auto;
+  max-height: 500px;
+  max-width: auto;
   display: flex;
   justify-content: center;
   margin: auto;
+}
+
+.actor-index-img {
+  max-width: 80%;
+  max-height: 60%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  justify-content: center;
+}
+
+.all-actors {
+  width: 80%;
+  margin: auto; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.actor-index-container {
+  width: 200px;
+  height: auto;
+  margin: auto;
+  padding: 5px;
+  display: inline-block;
+  color: white;
+  border: 1px solid darkslategray;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.actor-name {
+  bottom: 5px;
+}
+
+.movie-show-actor-img, .actor-show-movie-img {
+  max-width: 150px;
+  max-height: auto;
+}
+
+.top {
+  display: flex;
+  margin-left: 5%;
+  text-decoration: none;
+  background: #0000;
+  color: white;
+  font-size: larger;
+  position: fixed;
+  bottom: 5%;
 }

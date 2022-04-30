@@ -13,7 +13,9 @@
 
         <% for (let i=0; i < actor.movies.length; i++) {%> 
         <h2>Movies: <%=actor.movies[i].name%></h2>
-        <img src='<%=actor.movies[i].image%>'/>
+        <a href="/movies/<%=actor.movies[i]._id%>">
+            <img class="actor-show-movie-img" src='<%=actor.movies[i].image%>'/>
+        </a>
         <% } %>
         <form method="POST" action="/actors/<%=actor._id%>?_method=DELETE">           
             <input type="submit" value="Delete Actor"/>
