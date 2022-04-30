@@ -119,8 +119,12 @@ body {
   color: white;
 }
 .all-movies {
-  width: 100%;
+  width: 80%;
   margin: auto; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
 }
 
 .movie-container{
@@ -155,3 +159,10 @@ body {
   align-self: flex-end;
 }
 
+.show-image {
+  max-width: 50%;
+  max-height: auto;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
