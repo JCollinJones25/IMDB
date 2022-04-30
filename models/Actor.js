@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const actorSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'name cannot be empty'],
-        // unique: [true, 'that is already a movie']
+        required: [true, 'name cannot be empty']
     },
     image: {
         type: String,

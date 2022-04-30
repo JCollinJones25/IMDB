@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include ('../partials/head.ejs')%>
-<body>
-<%-include('../partials/nav.ejs') %>
-</body>
-    <div class='all-movies'>
-    <% for(let i=0; i < movies.length; i++){ %>
-        <% const movie=movies[i]%>
-        <div class='movie-container'>
-            <div>
-                <a href="/movies/<%=movie._id%>">
-                    <img class='movie-image' src='<%=movie.image%>'>
-                </a>
-            </div>
-            <div class='movie-text'>
-            <div class='movie-name'>
-                <h2><a href='/movies/<%=movie._id%>'><%=movie.name%></a></h2>
-            </div>
-            <div class='movie-info'>
-                <h4> <%=movie.year%></h4>
-                <h3> <%=movie.rating%></h3>
-            </div>
+  <%- include ('../partials/head.ejs')%>
+  <body>
+    <%-include('../partials/nav.ejs') %>
+  </body>
+  <a href="#" class="top">↑</a>
+  <div class="all-movies">
+    <% for(let i=0; i < movies.length; i++){ %> <% const movie=movies[i]%>
+    <div class="movie-container">
+      <div>
+        <a href="/movies/<%=movie._id%>">
+          <img class="movie-image" src="<%=movie.image%>" />
+        </a>
+      </div>
+      <div class="movie-text">
+        <div class="movie-name">
+          <h2><a href="/movies/<%=movie._id%>"><%=movie.name%></a></h2>
         </div>
+        <div class="movie-info">
+          <h4><%=movie.year%></h4>
+          <h3><%=movie.rating%></h3>
         </div>
-    <%}%>
+      </div>
     </div>
-
+    <%}%>
+  </div>
 </html>
