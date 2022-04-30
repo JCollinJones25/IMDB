@@ -80,8 +80,10 @@ router.post("/", async (req, res, next) => {
       if (newActorId.length === 0) {
         const newActor = await db.Actor.create(newActorData)
         array.push(newActor)
-      } else {
+      } else if (newActorId.length === 1 && i ===0){
         array.push(newActorId[0]._id)
+      } else {
+        console.log ('nothing')
       }
     }
     
