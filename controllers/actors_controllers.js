@@ -48,7 +48,6 @@ router.post("/", async (req, res, next) => {
         array.push(newMovieId[i]._id);
       }
     }
-    
     const newActorData = {
       name: req.body.name,
       age: req.body.age,
@@ -58,10 +57,12 @@ router.post("/", async (req, res, next) => {
     };
    
     const newActor = await db.Actor.create(newActorData);
+
    
     for(let i=0; i <= newMovieId.length; i++) {
     if (newMovieId.length > 0) {
       res.redirect(`/actors/${newActor._id}`);
+      
     } else {
         res.redirect(`/movies/${array[0]._id}/edit`);
     }
@@ -97,10 +98,7 @@ router.put("/:id", async (req, res, next) => {
 
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
-    console.log("New movie id " + newMovieId)
-    console.log("New movie id length " + newMovieId.length)
     for (let i = 0; i < newMovieId.length; i++) {
-        console.log(newMovieId[i])
       if (newMovieId.length === 0) {
         let createdMovieId = await db.Movie.create(newMovieData);
         array.push(createdMovieId);
@@ -124,9 +122,6 @@ for (let i = 0; i <= newMovieId.length; i++) {
       res.redirect(`/movies/${array[0]._id}/edit`);
     } 
   }
-
-// res.redirect(`/movies/${newMovie._id}/edit`);
-// res.redirect(`/actors/${req.params.id}`);
 
   } catch (error) {
     console.log(error);

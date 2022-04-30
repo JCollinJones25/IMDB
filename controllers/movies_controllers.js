@@ -131,10 +131,7 @@ router.put("/:id", async (req, res, next) => {
      }
     let array = [];
     let newActorId = await db.Actor.find({ name: req.body.actors });
-    console.log(newActorId)
-    console.log(newActorId.length)
     for (let i = 0; i < newActorId.length; i++) {
-      console.log(i)
       if (newActorId.length === 0) {
         let createdActorId = await db.Actor.create(newActorData)
         array.push(createdActorId);
