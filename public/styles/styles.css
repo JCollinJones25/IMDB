@@ -171,7 +171,6 @@ body {
   height: 150px;
   border-radius: 50%;
   display: flex;
-  justify-content: center;
   margin: auto;
   justify-content: center;
 }

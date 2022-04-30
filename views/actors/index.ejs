@@ -5,6 +5,8 @@
 <%-include('../partials/nav.ejs') %>
 </body>
     <h2>Actors</h2>
+    <a href="#" class="top">↑</a>
+    <% allActors.sort((a, b) => a.name.localeCompare(b.name)) %>
     <div class="all-actors">
         <% for(let i=0; i < allActors.length; i++){ %>
             <% const actor=allActors[i]%>
