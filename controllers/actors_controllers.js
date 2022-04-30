@@ -41,7 +41,6 @@ router.post("/", async (req, res, next) => {
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
     for (let i = 0; i <= newMovieId.length; i++) {
-        console.log(i)
       if (newMovieId.length === 0) {
         const newMovie = await db.Movie.create(newMovieData);
         array.push(newMovie);
@@ -61,7 +60,6 @@ router.post("/", async (req, res, next) => {
     const newActor = await db.Actor.create(newActorData);
    
     for(let i=0; i <= newMovieId.length; i++) {
-        console.log(array)
     if (newMovieId.length > 0) {
       res.redirect(`/actors/${newActor._id}`);
     } else {
@@ -123,7 +121,7 @@ for (let i = 0; i <= newMovieId.length; i++) {
     if (newMovieId.length > 0) {
       res.redirect(`/actors/${[req.params.id]}`);
     } else {
-      res.redirect(`/movies/${array[0]._id}`);
+      res.redirect(`/movies/${array[0]._id}/edit`);
     } 
   }
 
