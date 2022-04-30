@@ -131,6 +131,7 @@ router.put("/:id", async (req, res, next) => {
      }
     let array = [];
     let newActorId = await db.Actor.find({ name: req.body.actors });
+    // let createdActorId = await db.Actor.create(newActorData)
     for (let i = 0; i < newActorId.length; i++) {
       if (newActorId.length === 0) {
         let createdActorId = await db.Actor.create(newActorData)
@@ -149,7 +150,13 @@ router.put("/:id", async (req, res, next) => {
       actors: array
     });
 
-
+    // for (let i = 0; i <= createdActorId.length; i++) {
+    //   if (createdActorId.length > 0) {
+    //     res.redirect(`/movies`);
+    //   } else {
+    //     res.redirect(`/actors/${createdActorId[0]._id}/edit`);
+    //   } 
+    // }
     for (let i = 0; i <= newActorId.length; i++) {
       if (newActorId.length > 0) {
         res.redirect(`/movies`);
@@ -157,6 +164,7 @@ router.put("/:id", async (req, res, next) => {
         res.redirect(`/actors/${newActorId[0]._id}/edit`);
       } 
     }
+
   } catch (error) {
     console.log(error);
     req.error = error;

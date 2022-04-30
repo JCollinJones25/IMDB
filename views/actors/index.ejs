@@ -5,9 +5,16 @@
 <%-include('../partials/nav.ejs') %>
 </body>
     <h2>Actors</h2>
-    <% for(let i=0; i < allActors.length; i++){ %>
-        <% const actor=allActors[i]%>
-        <p><a href='/actors/<%=actor._id%>'><%=actor.name%></a></p>
-    <%}%>
+    <div class="all-actors">
+        <% for(let i=0; i < allActors.length; i++){ %>
+            <% const actor=allActors[i]%>
+            <div class="actor-index-container">
+                <a href='/actors/<%=actor._id%>'>
+                    <img class="actor-index-img" src='<%=actor.image%>'>
+                </a>
+                <p><a class="actor-name" href='/actors/<%=actor._id%>'><%=actor.name%></a></p>
+            </div>
+        <%}%>
+    </div>
 
 </html>
