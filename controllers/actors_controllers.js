@@ -37,6 +37,8 @@ router.post("/", async (req, res, next) => {
       name: req.body.movies,
       actors: [req.params.id]
     };
+
+    console.log(newMovieData.name)
       
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
@@ -68,7 +70,7 @@ router.post("/", async (req, res, next) => {
       res.redirect(`/actors/${newActor._id}`);
       
     } else {
-        res.redirect(`/actors/${array[0]._id}/edit`);
+        res.redirect(`/movies/${array[0]._id}/edit`);
     }
     }
   } catch (error) {
@@ -102,6 +104,11 @@ router.put("/:id", async (req, res, next) => {
 
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
+
+    //LEAVE THESE CONSOLE.LOGS FOR SOME REASON IF THEY AREN'T THERE THIS BREAKS
+    console.log(req.body.movies)
+    console.log(newMovieId)
+    console.log(newMovieId.length)
     
     console.log(newMovieId.length + 'newmovieidlength')
     for (let i = 0; i <= newMovieId.length; i++) {
