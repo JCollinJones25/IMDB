@@ -141,7 +141,10 @@ router.put("/:id", async (req, res, next) => {
      }
     let array = [];
     let newActorId = await db.Actor.find({ name: req.body.actors });
-     
+
+    //LEAVE THESE CONSOLE.LOGS FOR SOME REASON IF THEY AREN'T THERE THIS BREAKS
+    console.log(req.body.actors)
+    console.log(newActorId)
     console.log(newActorId.length)
     for (let i = 0; i <= newActorId.length; i++) {
       if (newActorId.length === 0) {
@@ -150,7 +153,7 @@ router.put("/:id", async (req, res, next) => {
       } else if (newActorId.length === 1 && i === 0) {
         array.push(newActorId[0]._id);
       } else {
-        console.log('This should ever log')
+        console.log('This should never log')
       }
     }
     const movie = await db.Movie.findByIdAndUpdate(req.params.id, {
@@ -167,7 +170,7 @@ router.put("/:id", async (req, res, next) => {
     console.log(array)
     for (let i = 0; i <= newActorId.length; i++) {
       if (newActorId.length > 0) {
-        res.redirect(`/movies`);
+        res.redirect(`/movies/${req.params.id}`);
       } else if(newActorId.length === 0) {
         res.redirect(`/actors/${array[0]._id}/edit`);
       } 
