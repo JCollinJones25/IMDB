@@ -4,19 +4,25 @@
 <body>
     <%- include('../partials/nav.ejs')%>
 
-    
-    <h1><%=actor.name%></h1>
-    <img class="show-image" src="<%=actor.image%>" alt="<%=actor.name%>">
-    <section>
-        <h2>Age: <%=actor.age%></h2>
-        <h2>Hometown: <%=actor.hometown%></h2>
+    <div class="show-container">
 
-        <% for (let i=0; i < actor.movies.length; i++) {%> 
-        <h2>Movies: <%=actor.movies[i].name%></h2>
-        <a href="/movies/<%=actor.movies[i]._id%>">
-            <img class="actor-show-movie-img" src='<%=actor.movies[i].image%>'/>
-        </a>
-        <% } %>
+        <h1><%=actor.name%></h1>
+        <img class="show-image" src="<%=actor.image%>" alt="<%=actor.name%>">
+        <section>
+            <h2>Age: <%=actor.age%></h2>
+            <h2>Hometown: <%=actor.hometown%></h2>
+            <h2>Filmography: </h2>
+            <div class="actor-movies-cont">
+                <% for (let i=0; i < actor.movies.length; i++) {%> 
+                    <div class="actor-show-movies-cont">
+                        <a href="/movies/<%=actor.movies[i]._id%>">
+                            <img class="actor-show-movie-img" src='<%=actor.movies[i].image%>'/>
+                        </a>
+                        <p><%=actor.movies[i].name%></p>
+                    </div>
+                <% } %>
+            </div>
+    </div>
         <form method="POST" action="/actors/<%=actor._id%>?_method=DELETE">           
             <input type="submit" value="Delete Actor"/>
         </form>

@@ -1,18 +1,17 @@
-
 .imdb {
-    text-align: center;
-    order: 1;  
-    border: 1px solid #DAA520;
-    background-color: #DAA520;
-    width: 100px;
-    border-radius: 8px;
-    color:black;
+  text-align: center;
+  order: 1;
+  border: 1px solid #daa520;
+  background-color: #daa520;
+  width: 100px;
+  border-radius: 8px;
+  color: black;
 }
 
-.top-section{
-    display: flex;
-    justify-content: flex-start;
-    width: 50%;
+.top-section {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
 }
 
 .searchbar {
@@ -26,7 +25,7 @@
   order: 1;
 }
 
-.top-section input[type=text] {
+.top-section input[type="text"] {
   padding: 6px;
   margin-top: 8px;
   font-size: 17px;
@@ -59,75 +58,73 @@
 }
 
 .sidenav {
-    height: 100%; 
-    width: 0; 
-    position: fixed; 
-    z-index: 1; 
-    top: 0; 
-    left: 0;
-    background-color: lightblue; 
-    overflow-x: hidden; 
-    padding-top: 60px; 
-    transition: 0.5s; 
-  }
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: lightblue;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
 
 .sidenav a:hover {
-    color: gray;
-  }
+  color: gray;
+}
 
 nav a {
-    text-decoration: none;
-    text-transform: uppercase;
-    color: white;
- 
-  }
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+}
 
 .movie-container a {
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
-  }
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
 .movie-container a:hover {
   text-decoration: underline;
 }
 
-  nav li {
-    padding: 10px;
-  }
+nav li {
+  padding: 10px;
+}
 
 .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
 
 .nav-list {
-    list-style-type: none;
-  }
-
+  list-style-type: none;
+}
 
 .bigger {
-    font-size: 35px;
-    margin-top: 20px;
-    cursor: pointer;
+  font-size: 35px;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
 body {
   background-color: black;
   color: white;
-
 }
+
 .all-movies {
   width: 80%;
-  margin: auto; 
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.movie-container{
+.movie-container {
   width: 200px;
   height: 400px;
   margin: auto;
@@ -159,8 +156,8 @@ body {
 }
 
 .show-image {
-  max-height: 500px;
-  max-width: auto;
+  max-height: auto;
+  max-width: 80%;
   display: flex;
   justify-content: center;
   margin: auto;
@@ -177,7 +174,7 @@ body {
 
 .all-actors {
   width: 80%;
-  margin: auto; 
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -206,7 +203,8 @@ body {
   bottom: 5px;
 }
 
-.movie-show-actor-img, .actor-show-movie-img {
+.movie-show-actor-img,
+.actor-show-movie-img {
   max-width: 150px;
   max-height: auto;
 }
@@ -220,4 +218,38 @@ body {
   font-size: larger;
   position: fixed;
   bottom: 5%;
+}
+
+.show-container {
+  display: flex;
+  align-items: center;
+  border: solid;
+  border-color: darkgrey;
+  border-radius: 1%;
+  flex-direction: column;
+  max-width: 50%;
+  height: auto;
+  margin-left: 25%;
+}
+
+.actor-show-movies-cont {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 150px;
+  max-height: auto;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.actor-movies-cont {
+  margin: 0;
+  max-width: 95%;
+  max-height: auto;
+  overflow: scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
