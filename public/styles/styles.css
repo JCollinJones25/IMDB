@@ -129,7 +129,7 @@ body {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  margin-top: 40px;
 }
 
 .movie-container {
@@ -232,6 +232,7 @@ body {
   max-width: 50%;
   height: auto;
   margin-left: 25%;
+  margin-top: 40px;
 }
 
 .actor-show-movies-cont,

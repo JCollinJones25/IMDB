@@ -10,7 +10,7 @@
       <section>
         <h2><%=oneMovie.genre%></h2>
         <h2>Director: <%=oneMovie.director%></h2>
-        <h2>Actors:</h2>
+        <h2>Cast:</h2>
         <div class="actor-movies-cont">
           <% for (let i = 0; i < oneMovie.actors.length; i++){ %>
             <div class="movie-show-actors-cont">
@@ -18,7 +18,8 @@
                 <img class="movie-show-actor-img" src="<%=oneMovie.actors[i].image%>" />
               </a>
               <h3>
-                <a href="/actors/<%=oneMovie.actors[i]._id%>"><p><%=oneMovie.actors[i].name%></p>
+                <a href="/actors/<%=oneMovie.actors[i]._id%>">
+                  <p><%=oneMovie.actors[i].name%></p>
                 </a>
               </h3>
             </div>
