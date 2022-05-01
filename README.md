@@ -29,6 +29,8 @@ MongoDB | Mongoose | Express | Node | Javascript | CSS | EJS
 - Deploy on Heroku
 
 ## Stretch Goals
+- Display actor's role in the movie on movie show route under actor name
+- Show routes can have more than one actor per movie and more than one movie per actor
 - DOM Manipulation (js file in public directory)
 - AUTH
 - Search Bar Feature

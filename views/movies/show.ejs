@@ -5,11 +5,11 @@
     <%- include('../partials/nav.ejs')%>
     <div class="show-container">
       <h1><%=oneMovie.name%></h1>
+      <h2><%=oneMovie.year%> | <%=oneMovie.rating%></h2>
       <img class="show-image" src="<%=oneMovie.image%>" alt="<%=oneMovie.name%>"/>
       <section>
-        <h2>Year: <%=oneMovie.year%></h2>
-        <h2>Rating: <%=oneMovie.rating%></h2>
-        <h2>Genre: <%=oneMovie.genre%></h2>
+        <h2><%=oneMovie.genre%></h2>
+        <h2>Director: <%=oneMovie.director%></h2>
         <h2>Actors:</h2>
         <div class="actor-movies-cont">
           <% for (let i = 0; i < oneMovie.actors.length; i++){ %>
