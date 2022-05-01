@@ -70,7 +70,8 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: lightblue;
+  background-color: #daa520;
+  /* background-color: lightblue; */
   overflow-x: hidden;
   padding-top: 60px;
   transition: 0.5s;
@@ -91,6 +92,7 @@ nav a {
   color: white;
   cursor: pointer;
 }
+
 .movie-container a:hover {
   text-decoration: underline;
 }
@@ -238,13 +240,17 @@ body {
   margin-left: 25%;
 }
 
-.actor-show-movies-cont {
+.actor-show-movies-cont,
+.movie-show-actors-cont {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   max-width: 150px;
   max-height: auto;
+  margin: auto;
+  display: inline-block;
+  text-align: center;
 }
 
 h2 {

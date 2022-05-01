@@ -4,36 +4,35 @@
   <body>
     <%- include('../partials/nav.ejs')%>
     <div class="show-container">
-
       <h1><%=oneMovie.name%></h1>
-      <img
-      class="show-image"
-      src="<%=oneMovie.image%>"
-      alt="<%=oneMovie.name%>"
-      />
+      <img class="show-image" src="<%=oneMovie.image%>" alt="<%=oneMovie.name%>"/>
       <section>
         <h2>Year: <%=oneMovie.year%></h2>
         <h2>Rating: <%=oneMovie.rating%></h2>
         <h2>Genre: <%=oneMovie.genre%></h2>
         <h2>Actors:</h2>
-        <% for (let i = 0; i < oneMovie.actors.length; i++){ %>
-          <div class="actor-thumb">
-            <a href="/actors/<%=oneMovie.actors[i]._id%>">
-              <img class="movie-show-actor-img" src="<%=oneMovie.actors[i].image%>" />
-            </a>
-            <h3>
-              <a href="/actors/<%=oneMovie.actors[i]._id%>"><p><%=oneMovie.actors[i].name%></p>
+        <div class="actor-movies-cont">
+          <% for (let i = 0; i < oneMovie.actors.length; i++){ %>
+            <div class="movie-show-actors-cont">
+              <a href="/actors/<%=oneMovie.actors[i]._id%>">
+                <img class="movie-show-actor-img" src="<%=oneMovie.actors[i].image%>" />
               </a>
-            </h3>
+              <h3>
+                <a href="/actors/<%=oneMovie.actors[i]._id%>"><p><%=oneMovie.actors[i].name%></p>
+                </a>
+              </h3>
+            </div>
+            <% } %>
           </div>
-          <% } %>
+          </div>
+        </section>
+        <div class="buttons">
+          <form method="PUT" action="/movies/<%=oneMovie._id%>/edit/?_method=EDIT">
+            <input type="submit" value="Edit Movie" />
+          </form>
+          <form method="POST" action="/movies/<%=oneMovie._id%>?_method=DELETE">
+            <input type="submit" value="Delete Movie" />
+          </form>
         </div>
-        <form method="POST" action="/movies/<%=oneMovie._id%>?_method=DELETE">
-          <input type="submit" value="Delete Movie" />
-        </form>
-        <form method="PUT" action="/movies/<%=oneMovie._id%>/edit/?_method=EDIT">
-          <input type="submit" value="Edit Movie" />
-        </form>
-    </section>
   </body>
 </html>
