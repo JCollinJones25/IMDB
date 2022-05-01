@@ -3,26 +3,34 @@
     <%- include('../partials/head.ejs')%>
 <body>
     <%- include('../partials/nav.ejs')%>
-
-    
-    <h1><%=actor.name%></h1>
-    <img class="show-image" src="<%=actor.image%>" alt="<%=actor.name%>">
-    <section>
-        <h2>Age: <%=actor.age%></h2>
-        <h2>Hometown: <%=actor.hometown%></h2>
-
-        <% for (let i=0; i < actor.movies.length; i++) {%> 
-        <h2>Movies: <%=actor.movies[i].name%></h2>
-        <a href="/movies/<%=actor.movies[i]._id%>">
-            <img class="actor-show-movie-img" src='<%=actor.movies[i].image%>'/>
-        </a>
-        <% } %>
-        <form method="POST" action="/actors/<%=actor._id%>?_method=DELETE">           
-            <input type="submit" value="Delete Actor"/>
-        </form>
-        <form method="PUT" action="/actors/<%=actor._id%>/edit/?_method=EDIT">           
-            <input type="submit" value="Edit Actor"/>
-        </form>
-    </section>
-</body>
+    <div class="show-container">
+        <h1><%=actor.name%></h1>
+        <img class="show-image" src="<%=actor.image%>" alt="<%=actor.name%>">
+        <section>
+            <h2>Age: <%=actor.age%></h2>
+            <h2>Hometown: <%=actor.hometown%></h2>
+            <h2>Filmography: </h2>
+            <div class="actor-movies-cont">
+                <% for (let i=0; i < actor.movies.length; i++) {%> 
+                    <div class="actor-show-movies-cont">
+                        <a href="/movies/<%=actor.movies[i]._id%>">
+                            <img class="actor-show-movie-img" src='<%=actor.movies[i].image%>'/>
+                        </a>
+                        <a href="/movies/<%=actor.movies[i]._id%>">
+                            <p><%=actor.movies[i].name%></p>
+                        </a>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+        <div class="buttons">
+            <form method="PUT" action="/actors/<%=actor._id%>/edit/?_method=EDIT">           
+                <input type="submit" value="Edit Actor"/>
+            </form>
+            <form method="POST" action="/actors/<%=actor._id%>?_method=DELETE">           
+                <input type="submit" value="Delete Actor"/>
+            </form>
+        </div>
+    </body>
 </html>
