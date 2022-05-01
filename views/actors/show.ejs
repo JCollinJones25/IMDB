@@ -5,7 +5,6 @@
     <%- include('../partials/nav.ejs')%>
 
     <div class="show-container">
-
         <h1><%=actor.name%></h1>
         <img class="show-image" src="<%=actor.image%>" alt="<%=actor.name%>">
         <section>
@@ -18,17 +17,21 @@
                         <a href="/movies/<%=actor.movies[i]._id%>">
                             <img class="actor-show-movie-img" src='<%=actor.movies[i].image%>'/>
                         </a>
-                        <p><%=actor.movies[i].name%></p>
+                        <a href="/movies/<%=actor.movies[i]._id%>">
+                            <p><%=actor.movies[i].name%></p>
+                        </a>
                     </div>
-                <% } %>
+                    <% } %>
+                </div>
             </div>
-    </div>
-        <form method="POST" action="/actors/<%=actor._id%>?_method=DELETE">           
-            <input type="submit" value="Delete Actor"/>
-        </form>
-        <form method="PUT" action="/actors/<%=actor._id%>/edit/?_method=EDIT">           
-            <input type="submit" value="Edit Actor"/>
-        </form>
-    </section>
-</body>
-</html>
+        </section>
+        <div class="buttons">
+            <form method="PUT" action="/actors/<%=actor._id%>/edit/?_method=EDIT">           
+                <input type="submit" value="Edit Actor"/>
+            </form>
+            <form method="POST" action="/actors/<%=actor._id%>?_method=DELETE">           
+                <input type="submit" value="Delete Actor"/>
+            </form>
+        </div>
+    </body>
+    </html>
