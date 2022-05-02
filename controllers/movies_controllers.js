@@ -100,7 +100,7 @@ router.post("/", async (req, res, next) => {
       array[i] = newId[0]._id
     }
     console.log(array)
-    const newMovie = await db.Movie.create(req.params.id, {
+    const newMovie = {
       name: req.body.name,
       year: req.body.year,
       director: req.body.director,
@@ -108,11 +108,15 @@ router.post("/", async (req, res, next) => {
       rating: req.body.rating,
       image: req.body.image,
       actors: array
-    });
+    };
+
+
+    const movie =  await db.Movie.create(newMovie)
+    
     
     // const updateActor = await db.Actor.findByIdAndUpdate(array[0]._id, {movies: newMovie._id})
 
-   res.redirect(`/movies/${newMovie._id}`)
+   res.redirect(`/movies/${movie._id}`)
   } catch (error) {
     console.log(error);
     req.error = error;
