@@ -27,6 +27,19 @@ router.get("/new", async (req, res, next) => {
   }
 });
 
+router.get('/search', async (req,res) =>{
+  try {
+    const movieQuery  = req.query
+    console.log(movieQuery)
+    const movie = await db.Movie.find({name: movieQuery.search})
+    res.redirect(`/movies/${movie[0]._id}`)
+
+  }catch(error) {
+    console.log(error)
+    req.error = error
+  }
+}) 
+
 // show route
 router.get("/:id/", async (req, res, next) => {
   try {
@@ -132,7 +145,7 @@ router.put("/:id", async (req, res, next) => {
         name: req.body.actors[i],
         movies: [req.params.id]
        }
-      if (!existingActorId && req.body.actors[i] !== '') 
+      if (!existingActorId && req.body.actors[i] !== '') {
         let createdActorId = await db.Actor.create(newActorData)
         array.push(createdActorId);
       } else if (req.body.actors[i] === ''){
