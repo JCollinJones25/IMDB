@@ -54,12 +54,12 @@ router.post("/", async (req, res, next) => {
 
     for (let i = 0; i < array.length; i++) {
         let newId = await db.Movie.find({name: array[i]})
-        console.log('new id '+ newId)
-        console.log('array i ' + array[i])
+        // console.log('new id '+ newId)
+        // console.log('array i ' + array[i])
         array[i] = newId[0]._id
       }
 
-      console.log("Second " + array)
+    //   console.log("Second " + array)
 
     const newActorData = {
       name: req.body.name,
