@@ -147,11 +147,13 @@ router.put("/:id", async (req, res, next) => {
       if (newActorId.length === 0) {
         let createdActorId = await db.Actor.create(newActorData)
         array.push(createdActorId);
-      } else if (newActorId.length === 1 && i === 0) {
-        array.push(newActorId[0]._id);
-      } else {
-        console.log('This should ever log')
-      }
+        console.log(createdActorId.length);
+      // } else if (newActorId.length === 1 && i === 0) {
+      //   array.push(newActorId[0]._id);
+    } else {
+      console.log(array)
+      array.push(newActorId[i]);
+    } 
     }
     const movie = await db.Movie.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
@@ -167,7 +169,7 @@ router.put("/:id", async (req, res, next) => {
     console.log(array)
     for (let i = 0; i <= newActorId.length; i++) {
       if (newActorId.length > 0) {
-        res.redirect(`/movies`);
+        res.redirect(`/movies/${movie._id}`);
       } else if(newActorId.length === 0) {
         res.redirect(`/actors/${array[0]._id}/edit`);
       } 

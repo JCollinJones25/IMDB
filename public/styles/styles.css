@@ -158,6 +158,11 @@ body {
   font-size: 10px;
 }
 
+section {
+  max-width: 80%;
+  margin: auto;
+}
+
 .movie-text {
   /* border: 1px solid darkslategray; */
   margin-top: 10px;
@@ -246,14 +251,13 @@ body {
   margin: auto;
   display: inline-block;
   text-align: center;
+  margin-right: 15px;
 }
 
 .movie-show-actor-img,
 .actor-show-movie-img {
   max-width: 150px;
   max-height: 200px;
-  margin: auto;
-  object-fit: cover;
 }
 
 h1 {
@@ -273,9 +277,11 @@ p, a {
   margin: 0;
   max-width: 95%;
   max-height: auto;
-  overflow: scroll;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  float: left;
 }
 
 .buttons {
