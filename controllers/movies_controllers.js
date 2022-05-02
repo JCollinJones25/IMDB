@@ -31,8 +31,19 @@ router.get('/search', async (req,res) =>{
   try {
     const movieQuery  = req.query
     console.log(movieQuery)
-    const movie = await db.Movie.find({name: movieQuery.search})
-    res.redirect(`/movies/${movie[0]._id}`)
+    const movie = await db.Movie.find({name: movieQuery.search});
+    console.log(movie)
+    const actor = await db.Actor.find({name: movieQuery.search});
+    console.log(actor)
+    if (movie.length > 0) {
+      res.redirect(`/movies/${movie[0]._id}`)
+    }
+    else if (actor.length > 0){
+      res.redirect(`/actors/${actor[0]._id}`)
+    } else {
+      console.log('no match')
+    }
+    
 
   }catch(error) {
     console.log(error)
@@ -117,6 +128,8 @@ router.post("/", async (req, res, next) => {
     // const updateActor = await db.Actor.findByIdAndUpdate(array[0]._id, {movies: newMovie._id})
 
    res.redirect(`/movies/${movie._id}`)
+ 
+
   } catch (error) {
     console.log(error);
     req.error = error;
