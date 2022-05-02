@@ -32,26 +32,35 @@ router.get("/new", async (req, res, next) => {
 // create route
 router.post("/", async (req, res, next) => {
   try {
-    
-    const newMovieData = {
-      name: req.body.movies,
-      actors: [req.params.id]
-    };
-
-    console.log(newMovieData.name)
-      
     let array = [];
-    let newMovieId = await db.Movie.find({ name: req.body.movies });
-    for (let i = 0; i <= newMovieId.length; i++) {
-      if (newMovieId.length === 0) {
+    for (let i = 0; i < 10; i++) {
+        let existingMovieId = await db.Movie.exists({ name: req.body.movies[i] });
+        const newMovieData = {
+            name: req.body.movies[i],
+            actors: [req.params.id]
+          };
+      if (!existingMovieId && req.body.movies[i] !== '') {
         const newMovie = await db.Movie.create(newMovieData);
         array.push(newMovie);
-      } else if (newMovieId.length === 1 && i === 0) {
-        array.push(newMovieId[0]._id);
+      } else if (req.body.movies[i] === ''){
+        console.log('----- Movie is empty -----')
       } else {
-          console.log('this should never be logged')
+        array.push(req.body.movies[i]);
       }
     }
+
+    console.log("first " + array)
+    console.log(array.length)
+
+    for (let i = 0; i < array.length; i++) {
+        let newId = await db.Movie.find({name: array[i]})
+        console.log('new id '+ newId)
+        console.log('array i ' + array[i])
+        array[i] = newId[0]._id
+      }
+
+      console.log("Second " + array)
+
     const newActorData = {
       name: req.body.name,
       age: req.body.age,
@@ -62,17 +71,11 @@ router.post("/", async (req, res, next) => {
    
     const newActor = await db.Actor.create(newActorData);
 
-    const updateMovie = await db.Movie.findByIdAndUpdate(array[0]._id, {actors: newActor._id})
+    // const updateMovie = await db.Movie.findByIdAndUpdate(array, {actors: newActor._id})
 
-   
-    for(let i=0; i <= newMovieId.length; i++) {
-    if (newMovieId.length > 0) {
-      res.redirect(`/actors/${newActor._id}`);
+    res.redirect(`/actors/${newActor._id}`);
       
-    } else {
-        res.redirect(`/movies/${array[0]._id}/edit`);
-    }
-    }
+    
   } catch (error) {
     console.log(error);
     req.error = error;
