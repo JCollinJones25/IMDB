@@ -132,7 +132,7 @@ router.put("/:id", async (req, res, next) => {
         name: req.body.actors[i],
         movies: [req.params.id]
        }
-      if (!existingActorId && req.body.actors[i] !== '') {
+      if (!existingActorId && req.body.actors[i] !== '') 
         let createdActorId = await db.Actor.create(newActorData)
         array.push(createdActorId);
       } else if (req.body.actors[i] === ''){
@@ -159,6 +159,7 @@ router.put("/:id", async (req, res, next) => {
     });
 
     res.redirect(`/movies/${movie._id}`)
+
   } catch (error) {
     console.log(error);
     req.error = error;

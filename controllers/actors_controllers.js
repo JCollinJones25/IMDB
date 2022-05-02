@@ -37,6 +37,8 @@ router.post("/", async (req, res, next) => {
       name: req.body.movies,
       actors: [req.params.id]
     };
+
+    console.log(newMovieData.name)
       
     let array = [];
     let newMovieId = await db.Movie.find({ name: req.body.movies });
@@ -68,7 +70,7 @@ router.post("/", async (req, res, next) => {
       res.redirect(`/actors/${newActor._id}`);
       
     } else {
-        res.redirect(`/actors/${array[0]._id}/edit`);
+        res.redirect(`/movies/${array[0]._id}/edit`);
     }
     }
   } catch (error) {
@@ -103,7 +105,7 @@ router.put("/:id", async (req, res, next) => {
         actors: [req.params.id]
       };
       if (!existingMovieId && req.body.movies[i] !== '') {
-        let createdMovieId = await db.Movie.create(newMovieData);
+      let createdMovieId = await db.Movie.create(newMovieData);
         array.push(createdMovieId);
     } else if (req.body.movies[i] === ''){
       console.log('----- Movie is empty -----')
