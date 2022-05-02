@@ -102,28 +102,29 @@ router.put("/:id", async (req, res, next) => {
   try {
     let array = [];
     for (let i = 0; i < 10; i++) {
-      let existingMovieId = await db.Movie.exists({ name: req.body.movies[i] });
-      const newMovieData = {
-        name: req.body.movies[i],
-        actors: [req.params.id]
-      };
-      if (!existingMovieId && req.body.movies[i] !== '') {
+      let existingMovieId = await db.Movie.find({ name: req.body.movies[i] });
+      if (!existingMovieId.length && req.body.movies[i] !== '') {
+        const newMovieData = {
+            name: req.body.movies[i],
+            actors: [req.params.id]
+          };
       let createdMovieId = await db.Movie.create(newMovieData);
-        array.push(createdMovieId);
+        array.push(createdMovieId._id);
     } else if (req.body.movies[i] === ''){
       console.log('----- Movie is empty -----')
     } else {
-      array.push(req.body.movies[i]);
+      array.push(req.body.movies[i]._id);
+      
     }
 }
 console.log(array)
 
-for (let i = 0; i < array.length; i++) {
-  let newId = await db.Movie.find({name: array[i]})
-  array[i] = newId[0]._id
-}
+// for (let i = 0; i < array.length; i++) {
+//   let newId = await db.Movie.find({name: array[i]})
+//   array[i] = newId[0]._id
+// }
 console.log(array)
-const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
+await db.Actor.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     age: req.body.age,
     image: req.body.image,
@@ -131,7 +132,10 @@ const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
     movies: array
 });
 
-res.redirect(`/actors/${newActor._id}`)
+
+
+
+res.redirect(`/actors/${req.params.id}`)
 
   } catch (error) {
     console.log(error);
