@@ -4,38 +4,29 @@
   <body>
     <%- include('../partials/nav.ejs')%>
     <h1>Edit <%= actor.name%> </h1>
-    <div>
-      <form method="POST" action="/actors/<%= actor._id %>?_method=PUT">
-        <div>
+    <form method="POST" action="/actors/<%= actor._id %>?_method=PUT">
+      <div class="actor-movie-edit-new-cont">
           <label>Name: </label>
-          <input type="text" name="name" value="<%=actor.name %>" />
-        </div>
-        <div>
-          <label>Actor Image (URL): </label>
-          <input type="text" name="image" value="<%= actor.image %>" />
-        </div>
-        <div>
+          <input type="text" name="name" value="<%=actor.name %>" /></br>
           <label>Age: </label>
-          <input type="number" name="age" value="<%= actor.age %>" />
-        </div>
-        <div>
+          <input type="number" name="age" value="<%= actor.age %>" /></br>
           <label>Hometown: </label>
-          <input type="text" name="hometown" value="<%= actor.hometown %>" />
-        </div>
-        <div>
+          <input type="text" name="hometown" value="<%= actor.hometown %>" /></br>
+          <label>Actor Image (URL): </label>
+          <input type="text" name="image" value="<%= actor.image %>" /></br>
           <label>Movies: </label>
             <input type="text" name="movies" />
             <input type="text" name="movies" />
+            <input type="text" name="movies" /></br>
             <input type="text" name="movies" />
             <input type="text" name="movies" />
-            <input type="text" name="movies" />
-            <input type="text" name="movies" />
+            <input type="text" name="movies" /></br>
             <input type="text" name="movies" />
             <input type="text" name="movies" />
             <input type="text" name="movies" />
             <input type="text" name="movies" />
         </div>
-        <div>
+        <div class="buttons">
           <input type="submit" value="Edit <%= actor.name %>" />
         </div>
       </form>
