@@ -130,26 +130,37 @@ router.delete("/:id", async (req, res, next) => {
 // update route
 router.put("/:id", async (req, res, next) => {
   try {
-    const newActorData = {
-      name: req.body.actors,
-      movies: [req.params.id]
-     }
+    // console.log(req.body.actors)
     let array = [];
-    let newActorId = await db.Actor.find({ name: req.body.actors });
-
-    console.log(newActorId.length)
-    for (let i = 0; i <= newActorId.length; i++) {
-      if (newActorId.length === 0) {
+    // console.log(existingActorId.length)
+    for (let i = 0; i < 10; i++) {
+      let existingActorId = await db.Actor.exists({ name: req.body.actors[i] });
+      console.log(existingActorId)
+      const newActorData = {
+        name: req.body.actors[i],
+        movies: [req.params.id]
+       }
+      if (!existingActorId && req.body.actors[i] !== '') {
         let createdActorId = await db.Actor.create(newActorData)
         array.push(createdActorId);
-        console.log(createdActorId.length);
-      // } else if (newActorId.length === 1 && i === 0) {
-      //   array.push(newActorId[0]._id);
-    } else {
-      console.log(array)
-      array.push(newActorId[i]);
-    } 
+        // console.log(createdActorId);
+      // } else if (existingActorId.length === 1 && i === 0) {
+      //   array.push(existingActorId[0]._id);
+      } else if (req.body.actors[i] === ''){
+        console.log('----- Actor is empty -----')
+      } else {
+        // console.log(array)
+        array.push(req.body.actors[i]);
+      } 
     }
+    console.log(array)
+
+    for (let i = 0; i < array.length; i++) {
+      let newId = await db.Actor.find({name: array[i]})
+      console.log(`newId name is ${newId.name}`)
+      array[i] = newId[0]._id
+    }
+    console.log(array)
     const movie = await db.Movie.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
       year: req.body.year,
@@ -160,14 +171,14 @@ router.put("/:id", async (req, res, next) => {
       actors: array
     });
 
-    for (let i = 0; i <= newActorId.length; i++) {
-      if (newActorId.length > 0) {
-        res.redirect(`/movies/${movie._id}`);
-      } else if(newActorId.length === 0) {
-        res.redirect(`/actors/${array[0]._id}/edit`);
-      } 
-    }
-
+    // for (let i = 0; i <= existingActorId.length; i++) {
+    //   if (existingActorId.length > 0) {
+    //     res.redirect(`/movies/${movie._id}`);
+    //   } else if(existingActorId.length === 0) {
+    //     res.redirect(`/actors/${array[0]._id}/edit`);
+    //   }
+    // }
+    res.redirect(`/movies/${movie._id}`)
   } catch (error) {
     console.log(error);
     req.error = error;
