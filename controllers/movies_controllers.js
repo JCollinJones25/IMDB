@@ -29,11 +29,13 @@ router.get("/new", async (req, res, next) => {
 
 router.get('/search', async (req,res) =>{
   try {
-    const movieQuery  = req.query
+    const movieQuery  = req.query.search = req.query.search.toLowerCase().replace(/^(.)|\s+(.)/g, s => s.toUpperCase())
     console.log(movieQuery)
-    const movie = await db.Movie.find({name: movieQuery.search});
-    console.log(movie)
-    const actor = await db.Actor.find({name: movieQuery.search});
+    const searchQuery = req.query.search = req.query.search.toLowerCase().replace(/^(.)|\s+(.)/g, s => s.toUpperCase())
+    console.log(searchQuery)
+    const movie = await db.Movie.find({name: searchQuery});
+    // console.log(movie)
+    const actor = await db.Actor.find({name: movieQuery});
     console.log(actor)
     if (movie.length > 0) {
       res.redirect(`/movies/${movie[0]._id}`)
