@@ -33,13 +33,10 @@ router.get("/:id/", async (req, res, next) => {
     const foundMovie = await db.Movie.findById(req.params.id).populate(
       "actors"
     );
-    // const allActors = await db.Actor.find()
-    // console.log(allActors.length, "Actors Found")
-    // console.log(foundMovie);
     const context = {
       oneMovie: foundMovie,
-      // actors: allActors
     };
+    console.log(context.actors)
     return res.render("movies/show.ejs", context);
   } catch (error) {
     console.log(error);
@@ -52,9 +49,8 @@ router.get("/:id/", async (req, res, next) => {
 router.get("/:id/edit", async (req, res, next) => {
   try {
     const updatedMovie = await db.Movie.findById(req.params.id);
-    // console.log(updatedMovie);
     const context = {
-      movie: updatedMovie,
+      movie: updatedMovie
     };
     return res.render("movies/edit.ejs", context);
   } catch (error) {
@@ -71,7 +67,6 @@ router.post("/", async (req, res, next) => {
       name: req.body.actors,
       movies: req.body.movies
      }
-    
 
     let array = [];
     let newActorId = await db.Actor.find({name: req.body.actors})
@@ -141,7 +136,7 @@ router.put("/:id", async (req, res, next) => {
      }
     let array = [];
     let newActorId = await db.Actor.find({ name: req.body.actors });
-     
+
     console.log(newActorId.length)
     for (let i = 0; i <= newActorId.length; i++) {
       if (newActorId.length === 0) {
@@ -165,8 +160,6 @@ router.put("/:id", async (req, res, next) => {
       actors: array
     });
 
-  
-    console.log(array)
     for (let i = 0; i <= newActorId.length; i++) {
       if (newActorId.length > 0) {
         res.redirect(`/movies/${movie._id}`);
