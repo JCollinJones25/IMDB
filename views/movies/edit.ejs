@@ -4,33 +4,20 @@
 <body>
     <%- include('../partials/nav.ejs')%>
     <h1>Edit <%= movie.name%></h1>
-    <div>
-        <form method="POST" action="/movies/<%= movie._id %>?_method=PUT">
-        <div>
+    <form method="POST" action="/movies/<%= movie._id %>?_method=PUT">
+        <div class="actor-movie-edit-new-cont">
             <label>Movie Title: </label>
-            <input type="text" name="name" value="<%=movie.name %>"/>
-        </div>
-        <div>
+            <input type="text" name="name" value="<%=movie.name %>"/></br>
             <label>Year: </label>
-            <input type="text" name="year" value="<%= movie.year %>"/>
-        </div>
-        <div>
-            <label>Director: </label>
-            <input type="text" name="director" value="<%= movie.director %>"/>
-        </div>
-        <div>
-            <label>Genre: </label>
-            <input type="text" name="genre" value="<%= movie.genre %>"/>
-        </div>
-        <div>
+            <input type="text" name="year" value="<%= movie.year %>"/></br>
             <label>Rating: </label>
-            <input type="text" name="rating" value="<%= movie.rating %>"/>
-        </div>
-        <div>
+            <input type="text" name="rating" value="<%= movie.rating %>"/></br>
+            <label>Genre: </label>
+            <input type="text" name="genre" value="<%= movie.genre %>"/></br>
+            <label>Director: </label>
+            <input type="text" name="director" value="<%= movie.director %>"/></br>
             <label>Movie Poster (URL): </label>
-            <input type="text" name="image" value="<%= movie.image %>"/>
-        </div>
-        <div>
+            <input type="text" name="image" value="<%= movie.image %>"/></br>
             <label>Actors: </label>
                 <input type="text" name="actors" />
                 <input type="text" name="actors" />
@@ -43,7 +30,7 @@
                 <input type="text" name="actors" />
                 <input type="text" name="actors" />
         </div>
-        <div>
+        <div class="buttons">
             <input type="submit" value="Edit <%= movie.name %>"/>
         </div>
         </form>
