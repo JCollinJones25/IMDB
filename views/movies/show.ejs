@@ -8,9 +8,11 @@
       <h2><%=oneMovie.year%> ・ <%=oneMovie.rating%></h2>
       <img class="show-image" src="<%=oneMovie.image%>" alt="<%=oneMovie.name%>"/>
       <section>
-        <h2><%=oneMovie.genre%></h2>
-        <h2>Director: <%=oneMovie.director%></h2>
-        <h2>Cast:</h2>
+        <div class="movie-info-text">
+          <h2><%=oneMovie.genre%></h2>
+          <h2>Director: <%=oneMovie.director%></h2>
+          <h2>Cast:</h2>
+        </div>
         <div class="actor-movies-cont">
           <% for (let i = 0; i < oneMovie.actors.length; i++){ %>
             <div class="movie-show-actors-cont">

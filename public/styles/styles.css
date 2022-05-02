@@ -158,6 +158,11 @@ body {
   font-size: 10px;
 }
 
+section {
+  max-width: 80%;
+  margin: auto;
+}
+
 .movie-text {
   /* border: 1px solid darkslategray; */
   margin-top: 10px;
@@ -246,14 +251,32 @@ body {
   margin: auto;
   display: inline-block;
   text-align: center;
+  margin-right: 15px;
+  object-fit: cover;
 }
 
 .movie-show-actor-img,
 .actor-show-movie-img {
-  max-width: 150px;
-  max-height: 200px;
+  /* max-width: 150px;
+  max-height: 150px; */
+  width: 125px;
+  height: 150px;
+  /* border-radius: 50%; */
+  display: flex;
   margin: auto;
   object-fit: cover;
+}
+
+.actor-movies-cont {
+  margin: 0;
+  max-width: 95%;
+  max-height: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  float: left;
 }
 
 h1 {
@@ -269,13 +292,8 @@ p, a {
   text-decoration: none;
 }
 
-.actor-movies-cont {
-  margin: 0;
-  max-width: 95%;
-  max-height: auto;
-  overflow: scroll;
-  overflow-x: auto;
-  overflow-y: hidden;
+p {
+  font-size: smaller;
 }
 
 .buttons {
