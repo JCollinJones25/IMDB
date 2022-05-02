@@ -95,26 +95,29 @@ router.get("/:actorId", async (req, res, next) => {
 // update route
 router.put("/:id", async (req, res, next) => {
   try {
-    const newMovieData = {
-      name: req.body.movies,
-      actors: [req.params.id]
-    };
-
     let array = [];
-    let newMovieId = await db.Movie.find({ name: req.body.movies });
-    
-    console.log(newMovieId.length + 'newmovieidlength')
-    for (let i = 0; i <= newMovieId.length; i++) {
-      if (newMovieId.length === 0) {
+    for (let i = 0; i < 10; i++) {
+      let existingMovieId = await db.Movie.exists({ name: req.body.movies[i] });
+      const newMovieData = {
+        name: req.body.movies[i],
+        actors: [req.params.id]
+      };
+      if (!existingMovieId && req.body.movies[i] !== '') {
         let createdMovieId = await db.Movie.create(newMovieData);
         array.push(createdMovieId);
-    } else if (newMovieId.length === 1 && i === 0) {
-        array.push(newMovieId[0]._id);
+    } else if (req.body.movies[i] === ''){
+      console.log('----- Movie is empty -----')
     } else {
-        console.log("this should never log")
+      array.push(req.body.movies[i]);
     }
 }
+console.log(array)
 
+for (let i = 0; i < array.length; i++) {
+  let newId = await db.Movie.find({name: array[i]})
+  array[i] = newId[0]._id
+}
+console.log(array)
 const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     age: req.body.age,
@@ -123,14 +126,7 @@ const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
     movies: array
 });
 
-
-for (let i = 0; i <= newMovieId.length; i++) {
-    if (newMovieId.length > 0) {
-      res.redirect(`/actors/${[req.params.id]}`);
-    } else if (newMovieId.length === 0) {
-      res.redirect(`/movies/${array[0]._id}/edit`);
-    } 
-  }
+res.redirect(`/actors/${newActor._id}`)
 
   } catch (error) {
     console.log(error);
