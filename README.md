@@ -1,6 +1,6 @@
 # IMDB
 
-Visit IMDb [here]
+Visit IMDB [here]
 
 ## Technologies Used
 MongoDB | Mongoose | Express | Node | Javascript | CSS | EJS
