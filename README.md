@@ -1,5 +1,7 @@
 # IMDB
 
+Visit IMDb [here]
+
 ## Technologies Used
 MongoDB | Mongoose | Express | Node | Javascript | CSS | EJS
 
@@ -29,13 +31,13 @@ MongoDB | Mongoose | Express | Node | Javascript | CSS | EJS
 - Deploy on Heroku
 
 ## Stretch Goals
+- DOM Manipulation (done)
+- Show routes can have more than one actor per movie and more than one movie per actor (done)
+- Search Bar Feature (done)
 - Display actor's role in the movie on movie show route under actor name
-- Show routes can have more than one actor per movie and more than one movie per actor
-- DOM Manipulation (js file in public directory)
 - AUTH
-- Search Bar Feature
 - Use API Key to import data from OMDB
-- Import Rotten Tomatoes data for the movies
+- Rotten Tomatoes data
 
 ## Wireframe
 ![wireframe image](https://github.com/Royal0817/Project-2/blob/main/screenshots/IMDB-wireframe-movies.png?raw=true)
