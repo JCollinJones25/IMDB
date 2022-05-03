@@ -2,10 +2,9 @@ require('dotenv').config()
 
 const mongoose = require('mongoose');
 
-const mongoConnection = process.env.MONGOURI
-console.log(mongoConnection)
+const connectionStr = process.env.MONGODB_URI
 
-mongoose.connect(mongoConnection)
+mongoose.connect(connectionStr)
 
 mongoose.connection.on('connected', () => {
     console.log(`[${new Date().toLocaleTimeString()}] - MongoDB connected... 🔅 🔅 🔅 🌎  ➡️➡️➡️ 💻  🔅 🔅 🔅`)
