@@ -99,17 +99,18 @@ router.post("/", async (req, res, next) => {
        }
       if (!existingActorId && req.body.actors[i] !== '') {
         let createdActorId = await db.Actor.create(newActorData)
-        array.push(createdActorId);
+        array.push(createdActorId.name);
       } else if (req.body.actors[i] === ''){
         console.log('----- Actor is empty -----')
       } else {
         array.push(req.body.actors[i]);
       } 
     }
-    console.log(array)
+    console.log("SECOND " + array)
 
     for (let i = 0; i < array.length; i++) {
       let newId = await db.Actor.find({name: array[i]})
+      console.log("LAST 2 " + array[i])
       array[i] = newId[0]._id
     }
     console.log(array)
@@ -159,28 +160,30 @@ router.put("/:id", async (req, res, next) => {
     let array = [];
     for (let i = 0; i < 10; i++) {
       let existingActorId = await db.Actor.exists({ name: req.body.actors[i] });
-      console.log(existingActorId)
+      console.log("existing actor " + existingActorId)
+      console.log('existing actors 2' + !existingActorId)
       const newActorData = {
         name: req.body.actors[i],
         movies: [req.params.id]
        }
       if (!existingActorId && req.body.actors[i] !== '') {
         let createdActorId = await db.Actor.create(newActorData)
-        array.push(createdActorId);
+        array.push(createdActorId.name);
       } else if (req.body.actors[i] === ''){
         console.log('----- Actor is empty -----')
       } else {
         array.push(req.body.actors[i]);
       } 
     }
-    console.log(array)
+    console.log("one 2" + array)
 
     for (let i = 0; i < array.length; i++) {
       let newId = await db.Actor.find({name: array[i]})
       array[i] = newId[0]._id
+      console.log(array[i])
     }
-    console.log(array)
-    const movie = await db.Movie.findByIdAndUpdate(req.params.id, {
+    console.log("two " + array)
+   await db.Movie.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
       year: req.body.year,
       director: req.body.director,
@@ -190,7 +193,9 @@ router.put("/:id", async (req, res, next) => {
       actors: array
     });
 
-    res.redirect(`/movies/${movie._id}`)
+    console.log("three " + array)
+
+    res.redirect(`/movies/${req.params.id}`)
 
   } catch (error) {
     console.log(error);

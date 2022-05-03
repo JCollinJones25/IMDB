@@ -41,7 +41,7 @@ router.post("/", async (req, res, next) => {
           };
       if (!existingMovieId && req.body.movies[i] !== '') {
         const newMovie = await db.Movie.create(newMovieData);
-        array.push(newMovie);
+        array.push(newMovie.name);
       } else if (req.body.movies[i] === ''){
         console.log('----- Movie is empty -----')
       } else {
@@ -50,16 +50,15 @@ router.post("/", async (req, res, next) => {
     }
 
     console.log("first " + array)
-    console.log(array.length)
+
 
     for (let i = 0; i < array.length; i++) {
         let newId = await db.Movie.find({name: array[i]})
-        // console.log('new id '+ newId)
-        // console.log('array i ' + array[i])
+        console.log("LAST 1 " + array[i])
         array[i] = newId[0]._id
       }
 
-    //   console.log("Second " + array)
+    
 
     const newActorData = {
       name: req.body.name,
@@ -107,23 +106,26 @@ router.put("/:id", async (req, res, next) => {
         name: req.body.movies[i],
         actors: [req.params.id]
       };
+      console.log(existingMovieId)
       if (!existingMovieId && req.body.movies[i] !== '') {
       let createdMovieId = await db.Movie.create(newMovieData);
-        array.push(createdMovieId);
+        array.push(createdMovieId.name);
     } else if (req.body.movies[i] === ''){
       console.log('----- Movie is empty -----')
     } else {
       array.push(req.body.movies[i]);
     }
 }
-console.log(array)
+console.log("one 1" + array)
 
 for (let i = 0; i < array.length; i++) {
+    console.log ("test" + array[i])
   let newId = await db.Movie.find({name: array[i]})
+  console.log("each" + newId[i])
   array[i] = newId[0]._id
 }
-console.log(array)
-const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
+
+await db.Actor.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     age: req.body.age,
     image: req.body.image,
@@ -131,7 +133,9 @@ const newActor = await db.Actor.findByIdAndUpdate(req.params.id, {
     movies: array
 });
 
-res.redirect(`/actors/${newActor._id}`)
+
+
+res.redirect(`/actors/${req.params.id}`)
 
   } catch (error) {
     console.log(error);
@@ -158,10 +162,10 @@ router.delete("/:id", async (req, res, next) => {
   try {
     const deletedActor = await db.Actor.findByIdAndDelete(req.params.id);
     // deletedActor.splice(req.params.id, 1)
-    console.log(
-        deletedActor.id, "<<< Actor | ", 
-        deletedActor.movie, "<<< Movie"
-        );
+    // console.log(
+    //     deletedActor.id, "<<< Actor | ", 
+    //     deletedActor.movie, "<<< Movie"
+    //     );
     res.redirect(`/actors/`);
   } catch (error) {
     console.log(error);
