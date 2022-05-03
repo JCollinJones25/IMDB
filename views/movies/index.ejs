@@ -10,10 +10,8 @@
     <% for(let i=0; i < movies.length; i++){ %> 
       <% const movie=movies[i]%>
     <div class="movie-container">
-      <div>
         <a href="/movies/<%=movie._id%>">
           <img class="movie-image" src="<%=movie.image%>" />
-      </div>
         </a>
       <div class="movie-text">
         <div class="movie-name">
