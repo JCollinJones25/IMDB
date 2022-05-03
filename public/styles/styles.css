@@ -71,7 +71,6 @@
   top: 0;
   left: 0;
   background-color: #daa520;
-  /* background-color: lightblue; */
   overflow-x: hidden;
   padding-top: 60px;
   transition: 0.5s;
@@ -139,7 +138,6 @@ body {
   padding: 5px;
   display: inline-block;
   color: white;
-  /* border: 1px solid darkslategray; */
 }
 
 .movie-container h2 {
@@ -164,7 +162,6 @@ section {
 }
 
 .movie-text {
-  /* border: 1px solid darkslategray; */
   margin-top: 10px;
 }
 
@@ -258,11 +255,8 @@ section {
 
 .movie-show-actor-img,
 .actor-show-movie-img {
-  /* max-width: 150px;
-  max-height: 150px; */
   width: 125px;
   height: 150px;
-  /* border-radius: 50%; */
   display: flex;
   margin: auto;
   object-fit: cover;
@@ -281,13 +275,11 @@ section {
 }
 
 ::-webkit-scrollbar-track {
-  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  */
   background-color: black;
   color: black;
 }
 
 ::-webkit-scrollbar-thumb {
-  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);  */
   background-color: black;
   color: grey;
 }

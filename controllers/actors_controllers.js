@@ -48,18 +48,11 @@ router.post("/", async (req, res, next) => {
         array.push(req.body.movies[i]);
       }
     }
-
-    console.log("first " + array)
-
-
     for (let i = 0; i < array.length; i++) {
         let newId = await db.Movie.find({name: array[i]})
         console.log("LAST 1 " + array[i])
         array[i] = newId[0]._id
       }
-
-    
-
     const newActorData = {
       name: req.body.name,
       age: req.body.age,
@@ -67,14 +60,8 @@ router.post("/", async (req, res, next) => {
       hometown: req.body.hometown,
       movies: array,
     };
-   
-    const newActor = await db.Actor.create(newActorData);
-
-    // const updateMovie = await db.Movie.findByIdAndUpdate(array, {actors: newActor._id})
-
-    res.redirect(`/actors/${newActor._id}`);
-      
-    
+  const newActor = await db.Actor.create(newActorData);
+  res.redirect(`/actors/${newActor._id}`);
   } catch (error) {
     console.log(error);
     req.error = error;
@@ -116,27 +103,19 @@ router.put("/:id", async (req, res, next) => {
       array.push(req.body.movies[i]);
     }
 }
-console.log("one 1" + array)
-
-for (let i = 0; i < array.length; i++) {
-    console.log ("test" + array[i])
+  for (let i = 0; i < array.length; i++) {
   let newId = await db.Movie.find({name: array[i]})
   console.log("each" + newId[i])
   array[i] = newId[0]._id
 }
-
-await db.Actor.findByIdAndUpdate(req.params.id, {
+  await db.Actor.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     age: req.body.age,
     image: req.body.image,
     hometown: req.body.hometown,
     movies: array
 });
-
-
-
 res.redirect(`/actors/${req.params.id}`)
-
   } catch (error) {
     console.log(error);
     req.error = error;
@@ -161,11 +140,6 @@ router.get("/:id/edit", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const deletedActor = await db.Actor.findByIdAndDelete(req.params.id);
-    // deletedActor.splice(req.params.id, 1)
-    // console.log(
-    //     deletedActor.id, "<<< Actor | ", 
-    //     deletedActor.movie, "<<< Movie"
-    //     );
     res.redirect(`/actors/`);
   } catch (error) {
     console.log(error);

@@ -30,13 +30,9 @@ router.get("/new", async (req, res, next) => {
 router.get('/search', async (req,res) =>{
   try {
     const movieQuery  = req.query.search = req.query.search.toLowerCase().replace(/^(.)|\s+(.)/g, s => s.toUpperCase())
-    console.log(movieQuery)
     const searchQuery = req.query.search = req.query.search.toLowerCase().replace(/^(.)|\s+(.)/g, s => s.toUpperCase())
-    console.log(searchQuery)
     const movie = await db.Movie.find({name: searchQuery});
-    // console.log(movie)
     const actor = await db.Actor.find({name: movieQuery});
-    console.log(actor)
     if (movie.length > 0) {
       res.redirect(`/movies/${movie[0]._id}`)
     }
@@ -45,8 +41,6 @@ router.get('/search', async (req,res) =>{
     } else {
       console.log('no match')
     }
-    
-
   }catch(error) {
     console.log(error)
     req.error = error
@@ -62,7 +56,6 @@ router.get("/:id/", async (req, res, next) => {
     const context = {
       oneMovie: foundMovie,
     };
-    console.log(context.actors)
     return res.render("movies/show.ejs", context);
   } catch (error) {
     console.log(error);
@@ -92,7 +85,6 @@ router.post("/", async (req, res, next) => {
     let array = [];
     for (let i = 0; i < 10; i++) {
       let existingActorId = await db.Actor.exists({ name: req.body.actors[i] });
-      console.log(existingActorId)
       const newActorData = {
         name: req.body.actors[i],
         movies: [req.params.id]
@@ -106,8 +98,6 @@ router.post("/", async (req, res, next) => {
         array.push(req.body.actors[i]);
       } 
     }
-    console.log("SECOND " + array)
-
     for (let i = 0; i < array.length; i++) {
       let newId = await db.Actor.find({name: array[i]})
       console.log("LAST 2 " + array[i])
@@ -123,29 +113,19 @@ router.post("/", async (req, res, next) => {
       image: req.body.image,
       actors: array
     };
-
-
-    const movie =  await db.Movie.create(newMovie)
-    
-    
-    // const updateActor = await db.Actor.findByIdAndUpdate(array[0]._id, {movies: newMovie._id})
-
+   const movie = await db.Movie.create(newMovie)
    res.redirect(`/movies/${movie._id}`)
- 
-
   } catch (error) {
     console.log(error);
     req.error = error;
     return next();
   }
-  
 });
 
 // delete route
 router.delete("/:id", async (req, res, next) => {
   try {
     const deletedMovie = await db.Movie.findByIdAndDelete(req.params.id);
-
     return res.redirect("/movies");
   } catch {
     console.log(error);
@@ -160,8 +140,6 @@ router.put("/:id", async (req, res, next) => {
     let array = [];
     for (let i = 0; i < 10; i++) {
       let existingActorId = await db.Actor.exists({ name: req.body.actors[i] });
-      console.log("existing actor " + existingActorId)
-      console.log('existing actors 2' + !existingActorId)
       const newActorData = {
         name: req.body.actors[i],
         movies: [req.params.id]
@@ -175,14 +153,10 @@ router.put("/:id", async (req, res, next) => {
         array.push(req.body.actors[i]);
       } 
     }
-    console.log("one 2" + array)
-
     for (let i = 0; i < array.length; i++) {
       let newId = await db.Actor.find({name: array[i]})
       array[i] = newId[0]._id
-      console.log(array[i])
     }
-    console.log("two " + array)
    await db.Movie.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
       year: req.body.year,
@@ -192,11 +166,7 @@ router.put("/:id", async (req, res, next) => {
       image: req.body.image,
       actors: array
     });
-
-    console.log("three " + array)
-
     res.redirect(`/movies/${req.params.id}`)
-
   } catch (error) {
     console.log(error);
     req.error = error;

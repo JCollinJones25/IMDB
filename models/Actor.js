@@ -4,7 +4,6 @@ const actorSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'name cannot be empty'],
-        
     },
     image: {
         type: String,
