@@ -385,7 +385,7 @@ input {
   .actor-name {
     font-size: smaller;
   }
-  form {
+  .searchform {
     max-width: 205px;
     max-height: auto;
     display: flex;
@@ -408,34 +408,40 @@ input {
     flex-wrap: nowrap;
   }
   .imdb {
-    max-width: 65px;
+    max-width: 75px;
     max-height: auto;
     font-size: 20px;
   }
   .imdb-div {
-    max-width: 65px;
+    max-width: 75px;
     max-height: auto;
     margin-top: 17px;
   }
+
+  .actor-movie-edit-new-cont {
+    max-width: 100%;
+    max-height: auto;
+  }
+  
 }
 
 @media only screen and (max-width: 400px){
-  form {
-    max-width: 95px;
+  .searchform {
+    max-width: 115px;
     max-height: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
   }
   .search-type {
-    max-width: 95px;
+    max-width: 115px;
     max-height: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
   }
   .searchbar {
-    max-width: 95px;
+    max-width: 115px;
     max-height: auto;
     margin-right: 60px;
     display: flex;
@@ -463,5 +469,10 @@ input {
   .movie-text {
     margin: 0;
     font-size: 8px;
+  }
+
+  .actor-movie-edit-new-cont {
+    max-width: 100%;
+    max-height: auto;
   }
 }
