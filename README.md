@@ -1,6 +1,6 @@
 # IMDB
 
-Visit IMDB [here](https://imdb-project2.herokuapp.com/movies)
+Visit IMDB [here](https://collins-imdb.herokuapp.com/movies)
 
 ## Technologies Used
 MongoDB | Mongoose | Express | Node | Javascript | CSS | EJS
