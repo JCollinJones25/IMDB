@@ -49,7 +49,7 @@ MongoDB | Mongoose | Express | Node | Javascript | CSS | EJS
 ![ERD image](https://github.com/Royal0817/Project-2/blob/main/screenshots/IMDB-ERD.png?raw=true)
 
 ## Screenshots
-![movie index](https://github.com/Royal0817/Project-2/blob/main/screenshots/IMDB-movie-index.png?raw=true)
+![movie index](https://github.com/JCollinJones25/IMDB/blob/main/screenshots/IMDB-movie-index.png?raw=true)
 ![actor index](https://github.com/Royal0817/Project-2/blob/main/screenshots/IMDB-actor-index.png?raw=true)
 ![movie show](https://github.com/Royal0817/Project-2/blob/main/screenshots/IMDB-movie-show-top.png?raw=true)
 ![movie show](https://github.com/Royal0817/Project-2/blob/main/screenshots/IMDB-movie-show-bottom.png?raw=true)
