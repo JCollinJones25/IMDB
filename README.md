@@ -1,6 +1,6 @@
 # IMDB
 
-Visit IMDB [here](https://collins-imdb.fly.dev/movies)
+Visit IMDB [here](https://collins-imdb.fly.dev/movies){:target=”_blank”}
 
 ## Technologies Used
 MongoDB | Mongoose | Express | Node | Javascript | CSS | EJS
